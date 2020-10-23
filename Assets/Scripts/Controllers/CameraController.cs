@@ -2,7 +2,7 @@
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public class CameraController : MonoBehaviour
+    internal sealed class CameraController : MonoBehaviour
     {
         #region Fields
 

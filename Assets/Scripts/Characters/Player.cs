@@ -9,10 +9,9 @@ namespace ShipovMihail_Roll_A_Boll
         public InputManager _inputManager;
         public Rigidbody _rigidbody; 
         public float Speed = 3.0f;
+        public float JumpForce = 20.0f;
 
         private Vector3 _movement;
-        private float _moveHorizontal;
-        private float _moveVertical;
 
         #endregion
 
@@ -32,11 +31,16 @@ namespace ShipovMihail_Roll_A_Boll
 
         protected void Move()
         {
-            _moveHorizontal = _inputManager.X;
-            _moveVertical = _inputManager.Y;
-
-            _movement = new Vector3(_moveHorizontal, 0.0f, _moveVertical);
+            _movement = new Vector3(_inputManager.X, 0.0f, _inputManager.Y);
             _rigidbody.AddForce(_movement * Speed);
+        }
+
+        protected void Jump()
+        {
+            if (_inputManager.CheckThatPressJump())
+            {
+                _rigidbody.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
+            }
         }
 
         #endregion

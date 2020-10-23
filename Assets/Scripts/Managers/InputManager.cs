@@ -2,12 +2,13 @@
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public class InputManager : MonoBehaviour
+    internal sealed class InputManager : MonoBehaviour
     {
         #region Fields
 
         private float _x;
         private float _y;
+        private KeyCode _jumpButton = KeyCode.Space;
 
         #endregion
 
@@ -29,5 +30,10 @@ namespace ShipovMihail_Roll_A_Boll
         }
 
         #endregion
+
+        public bool CheckThatPressJump()
+        {
+            return Input.GetKeyDown(_jumpButton);
+        }
     }
 }
