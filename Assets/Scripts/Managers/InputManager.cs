@@ -31,9 +31,14 @@ namespace ShipovMihail_Roll_A_Boll
 
         #endregion
 
+
+        #region Methods
+
         public bool CheckThatPressJump()
         {
             return Input.GetKeyDown(_jumpButton);
         }
+
+        #endregion
     }
 }

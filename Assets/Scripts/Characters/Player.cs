@@ -6,11 +6,11 @@ namespace ShipovMihail_Roll_A_Boll
     {
         #region Fields
 
-        public InputManager _inputManager;
-        public Rigidbody _rigidbody; 
-        public float Speed = 3.0f;
-        public float JumpForce = 20.0f;
+        public float Speed = 5.0f;
+        public float JumpForce = 5.0f; 
 
+        private InputManager _inputManager;
+        private Rigidbody _rigidbody;
         private Vector3 _movement;
 
         #endregion
