@@ -24,6 +24,14 @@ namespace ShipovMihail_Roll_A_Boll
             _rigidbody = GetComponent<Rigidbody>();
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.TryGetComponent(out ITakable kek))
+            {
+                kek.Take();
+            }
+        }
+
         #endregion
 
 

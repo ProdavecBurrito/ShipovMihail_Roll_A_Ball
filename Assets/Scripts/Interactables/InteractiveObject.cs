@@ -1,7 +1,25 @@
-﻿namespace ShipovMihail_Roll_A_Boll
+﻿using UnityEngine;
+
+
+namespace ShipovMihail_Roll_A_Boll
 {
-    public abstract class InteractiveObject
+    public abstract class InteractiveObject : MonoBehaviour, IInteracteble
     {
-        protected abstract void Interaction();
+        public bool IsInteractable { get; } = true;
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if(!IsInteractable || !other.CompareTag("Player"))
+            {
+                return;
+            }
+            Interaction();
+            Destroy(gameObject);
+        }
+
+        protected virtual void Interaction()
+        {
+
+        }
     }
 }
