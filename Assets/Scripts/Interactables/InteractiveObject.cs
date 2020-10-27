@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using System;
 
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public abstract class InteractiveObject : MonoBehaviour, IInteracteble
+    public abstract class InteractiveObject : MonoBehaviour, IInteracteble, IComparable<InteractiveObject>
     {
         public bool IsInteractable { get; } = true;
 
@@ -17,9 +18,11 @@ namespace ShipovMihail_Roll_A_Boll
             Destroy(gameObject);
         }
 
-        protected virtual void Interaction()
-        {
+        protected abstract void Interaction();
 
+        public int CompareTo(InteractiveObject other)
+        {
+            return name.CompareTo(other.name);
         }
     }
 }

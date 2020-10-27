@@ -6,9 +6,11 @@ namespace ShipovMihail_Roll_A_Boll
     {
         #region Fields
 
+        public float NormalSpeed = 5.0f;
         public float Speed = 5.0f;
-        public float JumpForce = 5.0f; 
+        public float JumpForce = 5.0f;
 
+        private Timer _timer;
         private InputManager _inputManager;
         private Rigidbody _rigidbody;
         private Vector3 _movement;
@@ -20,22 +22,33 @@ namespace ShipovMihail_Roll_A_Boll
 
         private void Start()
         {
+            _timer = new Timer();
             _inputManager = GetComponent<InputManager>();
             _rigidbody = GetComponent<Rigidbody>();
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out ITakable kek))
-            {
-                kek.Take();
-            }
+
         }
 
         #endregion
 
 
         #region Methods
+
+        public void BustSpeed(float time)
+        {
+            _timer.Init(time);
+            if (_timer.IsOn)
+            {
+                Speed = Speed * 2;
+            }
+            else
+            {
+                Speed = NormalSpeed;
+            }
+        }
 
         protected void Move()
         {

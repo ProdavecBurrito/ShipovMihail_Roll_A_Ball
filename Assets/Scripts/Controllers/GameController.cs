@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using System;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public class GameController : MonoBehaviour
+    public class GameController : MonoBehaviour, IDisposable
     {
 
         private InteractiveObject[] _interactiveObjects;
@@ -26,6 +27,14 @@ namespace ShipovMihail_Roll_A_Boll
                 {
                     updateTick.UpdateTick();
                 }
+            }
+        }
+
+        public void Dispose()
+        {
+            foreach (var item in _interactiveObjects)
+            {
+                Destroy(item.gameObject);
             }
         }
     }

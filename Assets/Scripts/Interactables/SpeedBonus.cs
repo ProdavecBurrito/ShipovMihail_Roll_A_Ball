@@ -1,24 +1,26 @@
 ﻿using UnityEngine;
-using static UnityEngine.Debug;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    internal sealed class BadBonus : InteractiveObject, IFly, IFlicker, IRotation, IUpdate
+    internal sealed class SpeedBonus : InteractiveObject, IFly, IRotation, IFlicker, IUpdate
     {
-        private Material _material;
         private float _flyHight;
         private float _rotationSpeed;
+        private Material _material;
+        private Player _player;
+        private float _boostTime = 5.0f;
 
         private void Start()
         {
+            _flyHight = Random.Range(1f, 2f);
+            _rotationSpeed = Random.Range(10.0f, 90.0f);
             _material = GetComponent<Renderer>().material;
-            _flyHight = Random.Range(0.5f, 1.5f);
-            _rotationSpeed = Random.Range(15.0f, 60.0f);
+            _player = FindObjectOfType<Player>();
         }
 
         protected override void Interaction()
         {
-            
+            _player.BustSpeed(_boostTime);
         }
 
         public void Fly()

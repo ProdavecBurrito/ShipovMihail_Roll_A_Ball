@@ -3,6 +3,6 @@
     public class SavedData<T>
     {
         public int BonusCounter;
-        public T IdPlayer;
+        public T IdPlayer = default;
     }
 }

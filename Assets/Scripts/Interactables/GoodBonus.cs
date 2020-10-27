@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
+using static UnityEngine.Debug;
 
 namespace ShipovMihail_Roll_A_Boll
 {
     public sealed class GoodBonus : InteractiveObject, IFly, IFlicker, IUpdate
     {
+        public int Point;
+
         private DisplayScore _displayScore;
         private Material _material;
         private float _flyHight;
@@ -21,7 +24,7 @@ namespace ShipovMihail_Roll_A_Boll
 
         protected override void Interaction()
         {
-            _displayScore.Display(5);
+            _displayScore.Display(Point);
         }
 
         public void Fly()
