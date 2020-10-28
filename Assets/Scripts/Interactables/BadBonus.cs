@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using static UnityEngine.Debug;
+using System;
+using Random = UnityEngine.Random;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    internal sealed class BadBonus : InteractiveObject, IFly, IFlicker, IRotation, IUpdate
+    internal sealed class BadBonus : InteractiveObject, IFly, IFlicker, IRotation, IUpdate, IDisposable
     {
         private Material _material;
         private float _flyHight;
@@ -42,6 +44,11 @@ namespace ShipovMihail_Roll_A_Boll
             Flicker();
             Fly();
             Rotation();
+        }
+
+        public void Dispose()
+        {
+            Destroy(gameObject);
         }
     }
 }

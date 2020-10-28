@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using static UnityEngine.Debug;
+using System;
+using Random = UnityEngine.Random;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public sealed class GoodBonus : InteractiveObject, IFly, IFlicker, IUpdate
+    public sealed class GoodBonus : InteractiveObject, IFly, IFlicker, IUpdate, IDisposable
     {
         public int Point;
 
@@ -42,6 +44,11 @@ namespace ShipovMihail_Roll_A_Boll
         {
             Fly();
             Flicker();
+        }
+
+        public void Dispose()
+        {
+            Destroy(gameObject);
         }
     }
 }

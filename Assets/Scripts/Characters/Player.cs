@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using System;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    internal class Player : MonoBehaviour
+    internal class Player : MonoBehaviour, IDisposable
     {
         #region Fields
 
@@ -47,6 +48,11 @@ namespace ShipovMihail_Roll_A_Boll
             {
                 _rigidbody.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
             }
+        }
+
+        public void Dispose()
+        {
+            Destroy(gameObject);
         }
 
         #endregion
