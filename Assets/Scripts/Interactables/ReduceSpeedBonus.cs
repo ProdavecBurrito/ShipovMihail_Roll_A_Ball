@@ -2,7 +2,7 @@
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    internal sealed class SpeedBonus : InteractiveObject, IFly, IRotation, IFlicker, IUpdate
+    class ReduceSpeedBonus : InteractiveObject, IFly, IRotation, IFlicker, IUpdate
     {
         private float _flyHight;
         private float _rotationSpeed;
@@ -13,14 +13,14 @@ namespace ShipovMihail_Roll_A_Boll
         private void Start()
         {
             _flyHight = Random.Range(1f, 2f);
-            _rotationSpeed = Random.Range(10.0f, 90.0f);
+            _rotationSpeed = Random.Range(5f, 180f);
             _material = GetComponent<Renderer>().material;
             _playerEffects = FindObjectOfType<PlayerEffects>();
         }
 
         protected override void Interaction()
         {
-            _playerEffects.BustSpeed(_boostTime);
+            _playerEffects.ReduceSpeed(_boostTime);
         }
 
         public void Fly()

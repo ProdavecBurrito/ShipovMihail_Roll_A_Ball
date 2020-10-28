@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using static UnityEngine.Debug;
 
 namespace ShipovMihail_Roll_A_Boll
 {
@@ -7,9 +8,11 @@ namespace ShipovMihail_Roll_A_Boll
     {
 
         private InteractiveObject[] _interactiveObjects;
+        private PlayerEffects _playerEffects;
 
         private void Awake()
         {
+            _playerEffects = FindObjectOfType<PlayerEffects>();
             _interactiveObjects = FindObjectsOfType<InteractiveObject>();
         }
 
@@ -27,6 +30,11 @@ namespace ShipovMihail_Roll_A_Boll
                 {
                     updateTick.UpdateTick();
                 }
+            }
+            if (_playerEffects.Timers.Count != 0)
+            {
+                Log(_playerEffects.Timers.Count);
+                _playerEffects.UpdateTick();
             }
         }
 
