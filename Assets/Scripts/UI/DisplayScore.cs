@@ -5,16 +5,19 @@ namespace ShipovMihail_Roll_A_Boll
 {
     public class DisplayScore
     {
-        private Text _text;
+        private Image _image;
+        private float _value = 0;
 
         public DisplayScore()
         {
-            _text = Object.FindObjectOfType<Text>();
+            _image = Object.FindObjectOfType<Image>();
         }
 
-        public void Display(int value)
+        public void Display(float value)
         {
-            _text.text = $"Вы набрали {value} очков";        
+            _value += value / 100;
+            Debug.Log(_value);
+            _image.fillAmount = _value;        
         }
     }
 }

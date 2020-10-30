@@ -10,6 +10,19 @@ namespace ShipovMihail_Roll_A_Boll
         private Material _material;
         private float _flyHight;
         private float _rotationSpeed;
+        public delegate void CaughtPlayerChange(object value);
+        private event EventHandler<CaughtPlayerEventArgs> _caughtPlayerChange;
+        public event EventHandler<CaughtPlayerEventArgs> CaughtPlayer
+        {
+            add
+            {
+                _caughtPlayerChange += value;
+            }
+            remove
+            {
+                _caughtPlayerChange -= value;
+            }
+        }
 
         private void Start()
         {
@@ -20,7 +33,7 @@ namespace ShipovMihail_Roll_A_Boll
 
         protected override void Interaction()
         {
-            
+            _caughtPlayerChange?.Invoke(this, new CaughtPlayerEventArgs(_color));
         }
 
         public void Fly()
