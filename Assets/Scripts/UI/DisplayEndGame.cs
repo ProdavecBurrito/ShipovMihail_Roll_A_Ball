@@ -13,9 +13,9 @@ namespace ShipovMihail_Roll_A_Boll
             _endGameText.text = string.Empty;
         }
 
-        public void GameOver(object sender, CaughtPlayerEventArgs args)
+        public void GameOver(object value, CaughtPlayerEventArgs args)
         {
-            _endGameText.text = $"Вы проиграли. Вас убил {((BadBonus)sender).name} {args.Color} цвета";
+            _endGameText.text = $"Вы проиграли. Вас убил{((BadBonus)value).name} {args.Color} цвета";
         }
     }
 }

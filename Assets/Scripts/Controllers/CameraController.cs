@@ -6,6 +6,7 @@ namespace ShipovMihail_Roll_A_Boll
     {
         #region Fields
 
+        private Animator _animator;
         private Player _player;
         private Vector3 _offset;
 
@@ -16,6 +17,7 @@ namespace ShipovMihail_Roll_A_Boll
 
         private void Start()
         {
+            _animator = GetComponent<Animator>();
             _player = FindObjectOfType<Player>();
             _offset = transform.position - _player.transform.position;
         }
@@ -23,6 +25,11 @@ namespace ShipovMihail_Roll_A_Boll
         private void FixedUpdate()
         {
             transform.position = _player.transform.position + _offset;
+        }
+
+        public void ShakeCamera(float value)
+        {
+            _animator.SetTrigger("Shake");
         }
 
         #endregion
