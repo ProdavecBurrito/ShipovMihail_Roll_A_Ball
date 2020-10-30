@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
+using System;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    internal class Player : MonoBehaviour
+    internal class Player : MonoBehaviour, IDisposable
     {
         #region Fields
 
-        public float Speed = 5.0f;
-        public float JumpForce = 5.0f; 
+        public float NormalSpeed = 5.0f;
+        public float CurrentSpeed = 5.0f;
+        public float JumpForce = 5.0f;
 
         private InputManager _inputManager;
         private Rigidbody _rigidbody;
@@ -24,6 +26,11 @@ namespace ShipovMihail_Roll_A_Boll
             _rigidbody = GetComponent<Rigidbody>();
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+
+        }
+
         #endregion
 
 
@@ -32,7 +39,7 @@ namespace ShipovMihail_Roll_A_Boll
         protected void Move()
         {
             _movement = new Vector3(_inputManager.X, 0.0f, _inputManager.Y);
-            _rigidbody.AddForce(_movement * Speed);
+            _rigidbody.AddForce(_movement * CurrentSpeed);
         }
 
         protected void Jump()
@@ -41,6 +48,11 @@ namespace ShipovMihail_Roll_A_Boll
             {
                 _rigidbody.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
             }
+        }
+
+        public void Dispose()
+        {
+            Destroy(gameObject);
         }
 
         #endregion

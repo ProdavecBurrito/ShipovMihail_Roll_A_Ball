@@ -5,28 +5,22 @@ using Random = UnityEngine.Random;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public sealed class GoodBonus : InteractiveObject, IFly, IFlicker, IUpdate, IDisposable
+    internal sealed class BadBonus : InteractiveObject, IFly, IFlicker, IRotation, IUpdate, IDisposable
     {
-        public int Point;
-
-        private DisplayScore _displayScore;
         private Material _material;
         private float _flyHight;
-
-        private void Awake()
-        {
-            _displayScore = new DisplayScore();
-        }
+        private float _rotationSpeed;
 
         private void Start()
         {
             _material = GetComponent<Renderer>().material;
-            _flyHight = Random.Range(1.0f, 2.0f);
+            _flyHight = Random.Range(0.5f, 1.5f);
+            _rotationSpeed = Random.Range(15.0f, 60.0f);
         }
 
         protected override void Interaction()
         {
-            _displayScore.Display(Point);
+            
         }
 
         public void Fly()
@@ -40,10 +34,16 @@ namespace ShipovMihail_Roll_A_Boll
             _material.color = new Color(_material.color.r, _material.color.g, _material.color.b, Mathf.PingPong(Time.time, 1.0f));
         }
 
+        public void Rotation()
+        {
+            transform.Rotate(Vector3.up * (Time.deltaTime * _rotationSpeed), Space.World);
+        }
+
         public void UpdateTick()
         {
-            Fly();
             Flicker();
+            Fly();
+            Rotation();
         }
 
         public void Dispose()

@@ -1,32 +1,26 @@
 ﻿using UnityEngine;
-using static UnityEngine.Debug;
-using System;
-using Random = UnityEngine.Random;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public sealed class GoodBonus : InteractiveObject, IFly, IFlicker, IUpdate, IDisposable
+    class ReduceSpeedBonus : InteractiveObject, IFly, IRotation, IFlicker, IUpdate
     {
-        public int Point;
-
-        private DisplayScore _displayScore;
-        private Material _material;
         private float _flyHight;
-
-        private void Awake()
-        {
-            _displayScore = new DisplayScore();
-        }
+        private float _rotationSpeed;
+        private Material _material;
+        private PlayerEffects _playerEffects;
+        private float _boostTime = 5.0f;
 
         private void Start()
         {
+            _flyHight = Random.Range(1f, 2f);
+            _rotationSpeed = Random.Range(5f, 180f);
             _material = GetComponent<Renderer>().material;
-            _flyHight = Random.Range(1.0f, 2.0f);
+            _playerEffects = FindObjectOfType<PlayerEffects>();
         }
 
         protected override void Interaction()
         {
-            _displayScore.Display(Point);
+            _playerEffects.ReduceSpeed(_boostTime);
         }
 
         public void Fly()
@@ -40,15 +34,16 @@ namespace ShipovMihail_Roll_A_Boll
             _material.color = new Color(_material.color.r, _material.color.g, _material.color.b, Mathf.PingPong(Time.time, 1.0f));
         }
 
-        public void UpdateTick()
+        public void Rotation()
         {
-            Fly();
-            Flicker();
+            transform.Rotate(Vector3.up * (Time.deltaTime * _rotationSpeed), Space.World);
         }
 
-        public void Dispose()
+        public void UpdateTick()
         {
-            Destroy(gameObject);
+            Flicker();
+            Fly();
+            Rotation();
         }
     }
 }
