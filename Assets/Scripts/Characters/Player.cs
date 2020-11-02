@@ -8,7 +8,7 @@ namespace ShipovMihail_Roll_A_Boll
         #region Fields
 
         public float NormalSpeed = 5.0f;
-        public float CurrentSpeed = 5.0f;
+        public float CurrentSpeed = 0;
         public float JumpForce = 5.0f;
 
         private InputManager _inputManager;
@@ -22,8 +22,20 @@ namespace ShipovMihail_Roll_A_Boll
 
         private void Start()
         {
-            _inputManager = GetComponent<InputManager>();
-            _rigidbody = GetComponent<Rigidbody>();
+            try
+            {
+                CurrentSpeed = NormalSpeed;
+                if (CurrentSpeed <= 0)
+                {
+                    throw new ValueException("Некорректно введенное число", CurrentSpeed);
+                }
+                _inputManager = GetComponent<InputManager>();
+                _rigidbody = GetComponent<Rigidbody>();
+            }
+            catch (ValueException e)
+            {
+                Debug.Log($"{e.Text} {e.Value}");
+            }
         }
 
         private void OnTriggerEnter(Collider other)

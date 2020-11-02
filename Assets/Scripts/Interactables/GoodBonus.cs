@@ -7,11 +7,24 @@ namespace ShipovMihail_Roll_A_Boll
 {
     public sealed class GoodBonus : InteractiveObject, IFly, IFlicker, IUpdate, IDisposable
     {
-        public int Point;
+        public float Point;
 
         private DisplayScore _displayScore;
         private Material _material;
         private float _flyHight;
+        public delegate void BonusChangeValue(float value);
+        private event BonusChangeValue _bonusChange;
+        public event BonusChangeValue BonusChange
+        {
+            add
+            {
+                _bonusChange += value;
+            }
+            remove
+            {
+                _bonusChange -= value;
+            }
+        }
 
         private void Awake()
         {
@@ -26,7 +39,7 @@ namespace ShipovMihail_Roll_A_Boll
 
         protected override void Interaction()
         {
-            _displayScore.Display(Point);
+            _bonusChange?.Invoke(Point);
         }
 
         public void Fly()
