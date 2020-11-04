@@ -2,36 +2,30 @@
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    internal sealed class CameraController : MonoBehaviour
+    internal sealed class CameraController : IUpdate
     {
-        #region Fields
-
         private Animator _animator;
-        private Player _player;
+        private Transform _player;
+        private Transform _mainCamera;
         private Vector3 _offset;
 
-        #endregion
-
-
-        #region UnityMethods
-
-        private void Start()
+        public CameraController (Transform player, Transform mainCamera, Animator cameraAnimator)
         {
-            _animator = GetComponent<Animator>();
-            _player = FindObjectOfType<Player>();
-            _offset = transform.position - _player.transform.position;
+            _player = player;
+            _mainCamera = mainCamera;
+            _animator = cameraAnimator;
+            _mainCamera.LookAt(_player);
+            _offset = _mainCamera.position - _player.transform.position;
         }
 
-        private void FixedUpdate()
+        public void UpdateTick()
         {
-            transform.position = _player.transform.position + _offset;
+            _mainCamera.position = _player.transform.position + _offset;
         }
 
         public void ShakeCamera(float value)
         {
             _animator.SetTrigger("Shake");
         }
-
-        #endregion
     }
 }

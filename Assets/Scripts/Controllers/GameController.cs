@@ -1,38 +1,39 @@
 ﻿using UnityEngine;
 using System;
-using static UnityEngine.Debug;
-using UnityEngine.UI;
 
 namespace ShipovMihail_Roll_A_Boll
 {
     public class GameController : MonoBehaviour, IDisposable
     {
-        public Text GameOverText;
         private CameraController _cameraController;
-        private ListInteractableObject _interactiveObjects;
-        private PlayerEffects _playerEffects;
+        private ListIUpdateObjects _updatingObjects;
         private DisplayEndGame _displayEndGame;
         private DisplayScore _displayScore;
+        private float _currentScore;
 
         private void Awake()
         {
-            _cameraController = FindObjectOfType<CameraController>();
-            _displayScore = new DisplayScore();
-            _displayEndGame = new DisplayEndGame(GameOverText);
-            _playerEffects = FindObjectOfType<PlayerEffects>();
-            _interactiveObjects = new ListInteractableObject();
+            _updatingObjects = new ListIUpdateObjects();
 
-            foreach (var item in _interactiveObjects)
+            var reference = new References();
+
+            _cameraController = new CameraController(reference.GetPlayerBall.transform, reference.GetMainCamera.transform, reference.GetCameraAnimator);
+            _displayEndGame = new DisplayEndGame();
+            _displayScore = new DisplayScore();
+
+            _updatingObjects.AddUpdateObject(_cameraController);
+
+            for (int i = 0; i < _updatingObjects.Count; i++)
             {
-                if (item is BadBonus badBonus)
+                if (_updatingObjects[i] is BadBonus badBonus)
                 {
-                    badBonus.CaughtPlayer += _displayEndGame.GameOver;
                     badBonus.CaughtPlayer += CaughtPlayer;
+                    badBonus.CaughtPlayer += _displayEndGame.GameOver;
                 }
 
-                if (item is GoodBonus goodBonus)
+                if (_updatingObjects[i] is GoodBonus goodBonus)
                 {
-                    goodBonus.BonusChange += _displayScore.Display;
+                    goodBonus.BonusChange += AddScore;
                     goodBonus.BonusChange += _cameraController.ShakeCamera;
                 }
             }
@@ -40,50 +41,43 @@ namespace ShipovMihail_Roll_A_Boll
 
         private void Update()
         {
-            for (int i = 0; i < _interactiveObjects.Count; i++)
+            for (int i = 0; i < _updatingObjects.Count; i++)
             {
-                var interactiveOnject = _interactiveObjects[i];
-
-                if (interactiveOnject == null)
+                if (_updatingObjects[i] == null)
                 {
                     continue;
                 }
-                if (interactiveOnject is IUpdate updateTick)
-                {
-                    updateTick.UpdateTick();
-                }
-            }
-            if (_playerEffects.Timers.Count != 0)
-            {
-                Log(_playerEffects.Timers.Count);
-                _playerEffects.UpdateTick();
+                _updatingObjects[i].UpdateTick();
             }
         }
 
-        private void CaughtPlayer(object value, CaughtPlayerEventArgs args)
+        private void CaughtPlayer(string value, Color args)
         {
             Time.timeScale = 0.0f;
         }
 
+        private void AddScore(float value)
+        {
+            _currentScore += value;
+            _displayScore.Display(_currentScore);
+        }
+
         public void Dispose()
         {
-            foreach (var item in _interactiveObjects)
+            for (int i = 0; i < _updatingObjects.Count; i++)
             {
-                if (item is InteractiveObject interactiveObject)
+                if (_updatingObjects[i] is BadBonus badBonus)
                 {
-                    if (item is BadBonus badBonus)
-                    {
-                        badBonus.CaughtPlayer -= CaughtPlayer;
-                        badBonus.CaughtPlayer -= _displayEndGame.GameOver;
-                    }
-                    if (item is GoodBonus goodBonus)
-                    {
-                        goodBonus.BonusChange -= _displayScore.Display;
-                        goodBonus.BonusChange -= _cameraController.ShakeCamera;
-                    }
-                    Destroy(interactiveObject.gameObject);
+                    badBonus.CaughtPlayer -= CaughtPlayer;
+                    badBonus.CaughtPlayer -= _displayEndGame.GameOver;
+                }
+
+                if (_updatingObjects[i] is GoodBonus goodBonus)
+                {
+                    goodBonus.BonusChange -= AddScore;
                 }
             }
         }
+
     }
 }

@@ -9,27 +9,10 @@ namespace ShipovMihail_Roll_A_Boll
     {
         public float Point;
 
-        private DisplayScore _displayScore;
         private Material _material;
         private float _flyHight;
         public delegate void BonusChangeValue(float value);
-        private event BonusChangeValue _bonusChange;
-        public event BonusChangeValue BonusChange
-        {
-            add
-            {
-                _bonusChange += value;
-            }
-            remove
-            {
-                _bonusChange -= value;
-            }
-        }
-
-        private void Awake()
-        {
-            _displayScore = new DisplayScore();
-        }
+        public event BonusChangeValue BonusChange = delegate (float val) { };
 
         private void Start()
         {
@@ -39,7 +22,7 @@ namespace ShipovMihail_Roll_A_Boll
 
         protected override void Interaction()
         {
-            _bonusChange?.Invoke(Point);
+            BonusChange.Invoke(Point);
         }
 
         public void Fly()
@@ -53,10 +36,13 @@ namespace ShipovMihail_Roll_A_Boll
             _material.color = new Color(_material.color.r, _material.color.g, _material.color.b, Mathf.PingPong(Time.time, 1.0f));
         }
 
-        public void UpdateTick()
+        public override void UpdateTick()
         {
-            Fly();
-            Flicker();
+            if (IsInteractable)
+            {
+                Fly();
+                Flicker();
+            }
         }
 
         public void Dispose()

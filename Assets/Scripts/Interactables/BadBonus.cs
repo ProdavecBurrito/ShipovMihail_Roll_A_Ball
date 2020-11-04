@@ -10,19 +10,8 @@ namespace ShipovMihail_Roll_A_Boll
         private Material _material;
         private float _flyHight;
         private float _rotationSpeed;
-        public delegate void CaughtPlayerChange(object value);
-        private event EventHandler<CaughtPlayerEventArgs> _caughtPlayerChange;
-        public event EventHandler<CaughtPlayerEventArgs> CaughtPlayer
-        {
-            add
-            {
-                _caughtPlayerChange += value;
-            }
-            remove
-            {
-                _caughtPlayerChange -= value;
-            }
-        }
+        public delegate void CaughtPlayerChange(string objectName, Color color);
+        public event CaughtPlayerChange CaughtPlayer = delegate (string value, Color color) { };
 
         private void Start()
         {
@@ -33,7 +22,7 @@ namespace ShipovMihail_Roll_A_Boll
 
         protected override void Interaction()
         {
-            _caughtPlayerChange?.Invoke(this, new CaughtPlayerEventArgs(_color));
+            CaughtPlayer.Invoke(gameObject.name, _color);
         }
 
         public void Fly()
@@ -52,11 +41,14 @@ namespace ShipovMihail_Roll_A_Boll
             transform.Rotate(Vector3.up * (Time.deltaTime * _rotationSpeed), Space.World);
         }
 
-        public void UpdateTick()
+        public override void UpdateTick()
         {
-            Flicker();
-            Fly();
-            Rotation();
+            if (IsInteractable)
+            {
+                Flicker();
+                Fly();
+                Rotation();
+            }
         }
 
         public void Dispose()
