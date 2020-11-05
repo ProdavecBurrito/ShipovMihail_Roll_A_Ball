@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace ShipovMihail_Roll_A_Boll
 {
     class ListIUpdateObjects
     {
         private List<IUpdate> _interactiveObjects;
-        private InteractiveObject _currentInteractiveObject;
 
         public ListIUpdateObjects()
         {
@@ -18,6 +16,11 @@ namespace ShipovMihail_Roll_A_Boll
                     AddUpdateObject(interactiveObject);
                 }
             }
+        }
+
+        public void RemoveUpdatingObject(IUpdate interactiveObject)
+        {
+            _interactiveObjects.Remove(interactiveObject);
         }
 
         public IUpdate this[int index]

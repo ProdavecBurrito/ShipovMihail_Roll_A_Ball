@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace ShipovMihail_Roll_A_Boll
 {
@@ -7,6 +8,10 @@ namespace ShipovMihail_Roll_A_Boll
         private PlayerBall _playerBall;
         private Camera _mainCamera;
         private Animator _cameraAnimator;
+        private Canvas _canvas;
+        private GameObject _endGame;
+        private GameObject _score;
+        private Button _restartButton;
 
         internal PlayerBall GetPlayerBall
         {
@@ -14,8 +19,8 @@ namespace ShipovMihail_Roll_A_Boll
             {
                 if (_playerBall == null)
                 {
-                    var loadingPlayer = Resources.Load<PlayerBall>("Player");
-                    _playerBall = loadingPlayer;
+                    PlayerBall loadingPlayer = Resources.Load<PlayerBall>("Player");
+                    _playerBall = Object.Instantiate(loadingPlayer);
                 }
 
                 return _playerBall;
@@ -46,6 +51,61 @@ namespace ShipovMihail_Roll_A_Boll
                 }
 
                 return _cameraAnimator;
+            }
+        }
+
+        public Canvas Canvas
+        {
+            get
+            {
+                if (_canvas == null)
+                {
+                    _canvas = Object.FindObjectOfType<Canvas>();
+                }
+
+                return _canvas;
+            }
+        }
+
+        public GameObject Score
+        {
+            get
+            {
+                if (_score == null)
+                {
+                    var scoreObject = Resources.Load<GameObject>("Score");
+                    _score = Object.Instantiate(scoreObject, Canvas.transform);
+                }
+
+                return _score;
+            }
+        }
+
+        public GameObject EndGame
+        {
+            get
+            {
+                if (_endGame == null)
+                {
+                    var endObject = Resources.Load<GameObject>("GameOver");
+                    _endGame = Object.Instantiate(endObject, Canvas.transform);
+                }
+
+                return _endGame;
+            }
+        }
+
+        public Button RestartButton
+        {
+            get
+            {
+                if (_restartButton == null)
+                {
+                    Button buttonObject = Resources.Load<Button>("RestartButton");
+                    _restartButton = Object.Instantiate(buttonObject, Canvas.transform);
+                }
+
+                return _restartButton;
             }
         }
     }

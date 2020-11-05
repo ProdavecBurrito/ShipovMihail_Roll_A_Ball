@@ -19,21 +19,7 @@ namespace ShipovMihail_Roll_A_Boll
             }
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            if(!IsInteractable || !other.CompareTag("Player"))
-            {
-                return;
-            }
-            Interaction();
-            Destroy(gameObject);
-        }
-
-        protected abstract void Interaction();
-
-        public abstract void UpdateTick();
-
-        private void Start()
+        private void Awake()
         {
             IsInteractable = true;
             _color = Random.ColorHSV();
@@ -42,6 +28,21 @@ namespace ShipovMihail_Roll_A_Boll
                 renderer.material.color = _color;
             }
         }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if(!IsInteractable || !other.CompareTag("Player"))
+            {
+                return;
+            }
+            IsInteractable = false;
+            Interaction();
+            //Destroy(gameObject);
+        }
+
+        protected abstract void Interaction();
+
+        public abstract void UpdateTick();
 
     }
 }

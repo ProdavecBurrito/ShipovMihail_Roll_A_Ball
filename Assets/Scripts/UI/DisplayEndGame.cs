@@ -7,9 +7,9 @@ namespace ShipovMihail_Roll_A_Boll
     {
         private Text _endGameText;
 
-        public DisplayEndGame()
+        public DisplayEndGame(GameObject text)
         {
-
+            _endGameText = text.GetComponent<Text>();
         }
 
         public void GameOver(string name, Color color)

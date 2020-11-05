@@ -1,4 +1,5 @@
 ﻿using UnityEngine.UI;
+using UnityEngine;
 
 namespace ShipovMihail_Roll_A_Boll
 {
@@ -6,9 +7,10 @@ namespace ShipovMihail_Roll_A_Boll
     {
         private Image _image;
 
-        public DisplayScore()
+        public DisplayScore(GameObject image)
         {
-           
+            _image = image.GetComponent<Image>();
+            _image.fillAmount = 0.0f;
         }
 
         public void Display(float value)
