@@ -11,6 +11,7 @@ namespace ShipovMihail_Roll_A_Boll
         private CameraController _cameraController;
         private ListIUpdateObjects _updatingObjects;
         private DisplayEndGame _displayEndGame;
+        private DisplayWinGame _displayWin;
         private DisplayScore _displayScore;
         private PlayerInputController _inputController;
         private References _reference;
@@ -28,6 +29,7 @@ namespace ShipovMihail_Roll_A_Boll
             _cameraController = new CameraController(_playerBall.transform, _reference.GetMainCamera.transform, _reference.GetCameraAnimator);
             _inputController = new PlayerInputController(_playerBall);
             _displayEndGame = new DisplayEndGame(_reference.EndGame);
+            _displayWin = new DisplayWinGame(_reference.WinGame);
             _displayScore = new DisplayScore(_reference.Score);
             _playerEffects = FindObjectOfType<PlayerEffects>();
 
@@ -56,7 +58,6 @@ namespace ShipovMihail_Roll_A_Boll
 
         private void Update()
         {
-            Debug.Log(_totalScoreObjects);
             for (int i = 0; i < _updatingObjects.Count; i++)
             {
                 if (_updatingObjects[i] == null)
@@ -69,6 +70,7 @@ namespace ShipovMihail_Roll_A_Boll
                     if (!interactiveObject.IsInteractable)
                     {
                         _updatingObjects.RemoveUpdatingObject(interactiveObject);
+                        _totalScoreObjects--;
                         Destroy(interactiveObject);
                         continue;
                     }
@@ -79,6 +81,11 @@ namespace ShipovMihail_Roll_A_Boll
             if (_playerEffects.Timers.Count != 0)
             {
                 _playerEffects.UpdateTick();
+            }
+
+            if (_totalScoreObjects < 1)
+            {
+                WinGame();
             }
         }
 
@@ -117,5 +124,11 @@ namespace ShipovMihail_Roll_A_Boll
             Time.timeScale = 1.0f;
         }
 
+        private void WinGame()
+        {
+            _displayWin.СongratulationWinText(_currentScore);
+            _reference.RestartButton.gameObject.SetActive(true);
+            Time.timeScale = 0.0f;
+        }
     }
 }

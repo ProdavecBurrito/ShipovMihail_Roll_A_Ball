@@ -10,6 +10,7 @@ namespace ShipovMihail_Roll_A_Boll
         private Animator _cameraAnimator;
         private Canvas _canvas;
         private GameObject _endGame;
+        private GameObject _winGame;
         private GameObject _score;
         private Button _restartButton;
 
@@ -92,6 +93,20 @@ namespace ShipovMihail_Roll_A_Boll
                 }
 
                 return _endGame;
+            }
+        }
+
+        public GameObject WinGame
+        {
+            get
+            {
+                if (_winGame == null)
+                {
+                    var winObject = Resources.Load<GameObject>("WinGame");
+                    _winGame = Object.Instantiate(winObject, Canvas.transform);
+                }
+
+                return _winGame;
             }
         }
 
