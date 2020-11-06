@@ -1,20 +1,21 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
+using UnityEngine;
 
 namespace ShipovMihail_Roll_A_Boll
 {
     public class DisplayScore
     {
-        private Text _text;
+        private Image _image;
 
-        public DisplayScore()
+        public DisplayScore(GameObject image)
         {
-            _text = Object.FindObjectOfType<Text>();
+            _image = image.GetComponent<Image>();
+            _image.fillAmount = 0.0f;
         }
 
-        public void Display(int value)
+        public void Display(float value)
         {
-            _text.text = $"Вы набрали {value} очков";        
+            _image.fillAmount = value;        
         }
     }
 }

@@ -1,12 +1,33 @@
 ﻿using UnityEngine;
-using System;
 
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public abstract class InteractiveObject : MonoBehaviour, IInteracteble, IComparable<InteractiveObject>
+    public abstract class InteractiveObject : MonoBehaviour, IInteracteble, IUpdate
     {
-        public bool IsInteractable { get; } = true;
+
+        protected Color _color;
+        private bool _isInteractable;
+        public bool IsInteractable
+        {
+            get => _isInteractable;
+            private set
+            {
+                _isInteractable = value;
+                GetComponent<Renderer>().enabled = _isInteractable;
+                GetComponent<Collider>().enabled = _isInteractable;            
+            }
+        }
+
+        private void Awake()
+        {
+            IsInteractable = true;
+            _color = Random.ColorHSV();
+            if (TryGetComponent(out Renderer renderer))
+            {
+                renderer.material.color = _color;
+            }
+        }
 
         private void OnTriggerEnter(Collider other)
         {
@@ -14,15 +35,14 @@ namespace ShipovMihail_Roll_A_Boll
             {
                 return;
             }
+            IsInteractable = false;
             Interaction();
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
         protected abstract void Interaction();
 
-        public int CompareTo(InteractiveObject other)
-        {
-            return name.CompareTo(other.name);
-        }
+        public abstract void UpdateTick();
+
     }
 }
