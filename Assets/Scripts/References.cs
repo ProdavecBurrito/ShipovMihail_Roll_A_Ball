@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace ShipovMihail_Roll_A_Boll
@@ -13,6 +14,7 @@ namespace ShipovMihail_Roll_A_Boll
         private GameObject _winGame;
         private GameObject _score;
         private Button _restartButton;
+        private List<GoodBonusController> _goodBonuses;
 
         internal PlayerBall GetPlayerBall
         {
@@ -107,6 +109,26 @@ namespace ShipovMihail_Roll_A_Boll
                 }
 
                 return _winGame;
+            }
+        }
+
+        internal List<GoodBonusController> GetGoodBonuses
+        {
+            get
+            {
+                if (_goodBonuses == null)
+                {
+                    _goodBonuses = new List<GoodBonusController>();
+                    var goodBonusObject = Resources.Load<GameObject>("GoodBonus");
+                    var goodBonusInst = Object.Instantiate(goodBonusObject);
+                    var goodBonusDivider = goodBonusInst.GetComponentsInChildren<GoodBonusController>();
+                    foreach (var item in goodBonusDivider)
+                    {
+                        _goodBonuses.Add(item);   
+                    }
+                }
+
+                return _goodBonuses;
             }
         }
 
