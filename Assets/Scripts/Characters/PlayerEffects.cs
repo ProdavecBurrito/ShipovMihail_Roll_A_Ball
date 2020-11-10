@@ -7,11 +7,11 @@ namespace ShipovMihail_Roll_A_Boll
     {
         private Timer _timer;
         public List<Timer> Timers = new List<Timer>();
-        private Player _player;
+        private PlayerBase _player;
 
         private void Start()
         {
-            _player = GetComponent<Player>();
+            _player = GetComponent<PlayerBase>();
         }
 
         public void UpdateTick()

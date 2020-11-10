@@ -39,7 +39,7 @@ namespace ShipovMihail_Roll_A_Boll
             transform.Rotate(Vector3.up * (Time.deltaTime * _rotationSpeed), Space.World);
         }
 
-        public void UpdateTick()
+        public override void UpdateTick()
         {
             Flicker();
             Fly();
