@@ -7,6 +7,7 @@ namespace ShipovMihail_Roll_A_Boll
 {
     public class GameController : MonoBehaviour, IDisposable
     {
+
         private PlayerEffects _playerEffects;
         private PlayerBall _playerBall;
         private CameraController _cameraController;
@@ -14,7 +15,7 @@ namespace ShipovMihail_Roll_A_Boll
         private DisplayEndGame _displayEndGame;
         private DisplayWinGame _displayWin;
         private DisplayScore _displayScore;
-        private PlayerInputController _inputController;
+        private InputController _inputController;
         private References _reference;
         private List<GoodBonusController> _goodBonuses;
         private int _totalScoreObjects;
@@ -29,7 +30,7 @@ namespace ShipovMihail_Roll_A_Boll
 
             _playerBall = _reference.GetPlayerBall;
             _cameraController = new CameraController(_playerBall.transform, _reference.GetMainCamera.transform, _reference.GetCameraAnimator);
-            _inputController = new PlayerInputController(_playerBall);
+            _inputController = new InputController(_playerBall);
             _displayEndGame = new DisplayEndGame(_reference.EndGame);
             _displayWin = new DisplayWinGame(_reference.WinGame);
             _displayScore = new DisplayScore(_reference.Score);

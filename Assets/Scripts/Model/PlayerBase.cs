@@ -2,7 +2,7 @@
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    internal abstract class PlayerBase : MonoBehaviour
+    public abstract class PlayerBase : MonoBehaviour
     {
 
         public float NormalSpeed = 5.0f;
