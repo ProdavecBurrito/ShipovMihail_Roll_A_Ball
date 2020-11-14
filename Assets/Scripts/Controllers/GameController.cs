@@ -18,6 +18,8 @@ namespace ShipovMihail_Roll_A_Boll
         private InputController _inputController;
         private References _reference;
         private List<GoodBonusController> _goodBonuses;
+        private List<SavedData> _savingObjects;
+        private List<InteractiveObject> _loadingObjects;
         private int _totalScoreObjects;
 
         private float _currentScore;
@@ -30,12 +32,13 @@ namespace ShipovMihail_Roll_A_Boll
 
             _playerBall = _reference.GetPlayerBall;
             _cameraController = new CameraController(_playerBall.transform, _reference.GetMainCamera.transform, _reference.GetCameraAnimator);
-            _inputController = new InputController(_playerBall);
             _displayEndGame = new DisplayEndGame(_reference.EndGame);
             _displayWin = new DisplayWinGame(_reference.WinGame);
             _displayScore = new DisplayScore(_reference.Score);
             _playerEffects = FindObjectOfType<PlayerEffects>();
             _goodBonuses = _reference.GetGoodBonuses;
+            _loadingObjects = new List<InteractiveObject>();
+            _savingObjects = new List<SavedData>();
 
             _updatingObjects.AddUpdateObject(_cameraController);
             _updatingObjects.AddUpdateObject(_inputController);
@@ -55,7 +58,24 @@ namespace ShipovMihail_Roll_A_Boll
                     badBonus.CaughtPlayer += CaughtPlayer;
                     badBonus.CaughtPlayer += _displayEndGame.GameOver;
                 }
+
+                if (_updatingObjects[i] is InteractiveObject interactiveObj)
+                {
+                    _savingObjects.Add(new SavedData()
+
+                    {
+                        Name = interactiveObj.name,
+                        Position = interactiveObj.transform.position,
+                        IsEnable = interactiveObj.gameObject.activeSelf
+                    });
+
+                    _loadingObjects.Add(interactiveObj);
+                }
             }
+
+            _inputController = new InputController(_savingObjects, _loadingObjects, _playerBall);
+
+            _updatingObjects.AddUpdateObject(_inputController);
 
             _reference.RestartButton.onClick.AddListener(RestartGame);
             _reference.RestartButton.gameObject.SetActive(false);

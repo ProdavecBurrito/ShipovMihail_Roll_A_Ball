@@ -28,7 +28,6 @@ namespace ShipovMihail_Roll_A_Boll
         public void Fly()
         {
             transform.position = new Vector3(transform.position.x, Mathf.PingPong(Time.time, _flyHight), transform.position.z);
-
         }
 
         public void Flicker()

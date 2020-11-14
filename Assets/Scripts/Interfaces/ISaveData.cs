@@ -3,6 +3,6 @@
     public interface ISaveData<T>
     {
         void Save(string path = null, params T[] data);
-        T Load(string path = null);
+        T[] Load(string path = null);
     }
 }

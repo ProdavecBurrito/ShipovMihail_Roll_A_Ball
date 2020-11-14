@@ -1,11 +1,12 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Xml;
 
 namespace ShipovMihail_Roll_A_Boll
 {
     public class XMLData : ISaveData<SavedData>
     {
-        public void Save(string path = null, SavedData[] savingObjects)
+        public void Save(string path = null, params SavedData[] savingObjects)
         {
             var xmlDoc = new XmlDocument();
             for (int i = 0; i < savingObjects.Length; i++)
@@ -36,20 +37,20 @@ namespace ShipovMihail_Roll_A_Boll
             xmlDoc.Save(path);
         }
 
-        public SavedData Load(string path = null)
+        public SavedData[] Load(string path = null)
         {
-            var result = new SavedData()[];
+            var result = new List<SavedData>();
 
             if (!File.Exists(path))
             {
-                return result;
+                return result.ToArray();
             }
 
             using (var reader = new XmlTextReader(path))
             {
                 while (reader.Read())
                 {
-                    for (int i = 0; i < result.Length; i++)
+                    for (int i = 0; i < result.Count; i++)
                     {
                         var key = "Name";
                         if (reader.IsStartElement(key))
@@ -79,7 +80,7 @@ namespace ShipovMihail_Roll_A_Boll
                     }
                 }
             }
-            return result;
+            return result.ToArray();
 
         }
     }

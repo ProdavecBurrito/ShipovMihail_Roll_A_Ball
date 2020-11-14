@@ -3,7 +3,7 @@
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public abstract class InteractiveObject : MonoBehaviour, IInteracteble, IUpdate
+    public abstract class InteractiveObject : MonoBehaviour, IInteracteble, IUpdate, ISaving
     {
 
         protected Color _color;

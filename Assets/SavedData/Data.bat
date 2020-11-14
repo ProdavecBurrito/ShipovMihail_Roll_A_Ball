@@ -1,7 +1,7 @@
-<Player>
-  <Name value="Player" />
-  <PosX value="-21,59719" />
-  <PosY value="-0,4654665" />
-  <PosZ value="-5,346572" />
+<Object>
+  <Name value="Cube (9)" />
+  <PosX value="2,546074" />
+  <PosY value="0,382" />
+  <PosZ value="-15,7747" />
   <IsEnable value="True" />
-</Player>
+</Object>

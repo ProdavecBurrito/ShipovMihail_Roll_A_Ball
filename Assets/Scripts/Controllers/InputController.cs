@@ -9,26 +9,17 @@ namespace ShipovMihail_Roll_A_Boll
         private SaveDataRepository _dataRepository;
         private KeyCode Save = KeyCode.F5;
         private KeyCode Load = KeyCode.F9;
-        private List<GoodBonusController> _goodBonuses;
-        private List<GameObject> _savingObjects;
+        private List<SavedData> _listSaveingObjects;
         private References references;
+        private List<InteractiveObject> _loadingObjects;
 
-        public InputController(PlayerBall playerBall)
+        public InputController(List<SavedData> listISaveObjects, List<InteractiveObject> loadingObjects , PlayerBall playerBall)
         {
-            references = new References();
-
-            _goodBonuses = references.GetGoodBonuses;
+            _loadingObjects = loadingObjects;
 
             _playerBall = playerBall;
 
-            _savingObjects = new List<GameObject>();
-
-            for (int i = 0; i < _goodBonuses.Count; i++)
-            {
-                _savingObjects.Add(_goodBonuses[i]);
-            }
-
-
+            _listSaveingObjects = listISaveObjects;
 
             _dataRepository = new SaveDataRepository();
         }
@@ -40,12 +31,13 @@ namespace ShipovMihail_Roll_A_Boll
 
             if (CheckSave())
             {
-                _dataRepository.Save(_savingObjects);
+                
+                _dataRepository.Save(_listSaveingObjects);
             }
 
             if (CheckLoad())
             {
-                _dataRepository.Load(_savingObjects);
+                _dataRepository.Load(_loadingObjects);
             }
         }
 
