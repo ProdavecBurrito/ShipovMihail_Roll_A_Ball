@@ -19,8 +19,7 @@ namespace ShipovMihail_Roll_A_Boll
         private References _reference;
         private List<GoodBonusController> _goodBonuses;
         private List<BadBonusController> _badBonuses;
-        private List<SavedData> _savingObjects;
-        private List<InteractiveObject> _loadingObjects;
+        private List<GameObject> _savingObjects;
         private int _totalScoreObjects;
 
         private float _currentScore;
@@ -32,18 +31,14 @@ namespace ShipovMihail_Roll_A_Boll
             _reference = new References();
 
             _playerBall = _reference.GetPlayerBall;
-            _cameraController = new CameraController(_playerBall.transform, _reference.GetMainCamera.transform, _reference.GetCameraAnimator);
             _displayEndGame = new DisplayEndGame(_reference.EndGame);
             _displayWin = new DisplayWinGame(_reference.WinGame);
             _displayScore = new DisplayScore(_reference.Score);
-            _playerEffects = FindObjectOfType<PlayerEffects>();
+            _playerEffects = _playerBall.GetComponent<PlayerEffects>();
             _goodBonuses = _reference.GetGoodBonuses;
             _badBonuses = _reference.GetBadBonus;
-            _loadingObjects = new List<InteractiveObject>();
-            _savingObjects = new List<SavedData>();
-
-            _updatingObjects.AddUpdateObject(_cameraController);
-            _updatingObjects.AddUpdateObject(_inputController);
+            _savingObjects = new List<GameObject>();
+            _cameraController = new CameraController(_playerBall.transform, _reference.GetMainCamera.transform, _reference.GetCameraAnimator);
 
             foreach (var item in _goodBonuses)
             {
@@ -59,31 +54,19 @@ namespace ShipovMihail_Roll_A_Boll
                 item.CaughtPlayer += CaughtPlayer;
                 item.CaughtPlayer += _displayEndGame.GameOver;
             }
-
             for (int i = 0; i < _updatingObjects.Count; i++)
             {
-                //if (_updatingObjects[i] is BadBonus badBonus)
-                //{
-                //    badBonus.CaughtPlayer += CaughtPlayer;
-                //    badBonus.CaughtPlayer += _displayEndGame.GameOver;
-                //}
-
-                if (_updatingObjects[i] is InteractiveObject interactiveObj)
+                if(_updatingObjects[i] is InteractiveObject interactiveObject)
                 {
-                    _savingObjects.Add(new SavedData()
-
-                    {
-                        Name = interactiveObj.name,
-                        Position = interactiveObj.transform.position,
-                        IsEnable = interactiveObj.gameObject.activeSelf
-                    });
-
-                    _loadingObjects.Add(interactiveObj);
+                    _savingObjects.Add(interactiveObject.gameObject);
                 }
             }
 
-            _inputController = new InputController(_savingObjects, _loadingObjects, _playerBall);
+            _savingObjects.Add(_playerBall.gameObject);
 
+            _inputController = new InputController(_savingObjects, _playerBall);
+
+            _updatingObjects.AddUpdateObject(_cameraController);
             _updatingObjects.AddUpdateObject(_inputController);
 
             _reference.RestartButton.onClick.AddListener(RestartGame);

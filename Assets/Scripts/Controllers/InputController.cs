@@ -9,13 +9,10 @@ namespace ShipovMihail_Roll_A_Boll
         private SaveDataRepository _dataRepository;
         private KeyCode Save = KeyCode.F5;
         private KeyCode Load = KeyCode.F9;
-        private SavedData [] _listSaveingObjects;
-        private References references;
-        private List<InteractiveObject> _loadingObjects;
+        private GameObject[] _listSaveingObjects;
 
-        public InputController(List<SavedData> listISaveObjects, List<InteractiveObject> loadingObjects , PlayerBall playerBall)
+        public InputController(List<GameObject> listISaveObjects, PlayerBall playerBall)
         {
-            _loadingObjects = loadingObjects;
 
             _playerBall = playerBall;
 
@@ -31,13 +28,12 @@ namespace ShipovMihail_Roll_A_Boll
 
             if (CheckSave())
             {
-                
                 _dataRepository.Save(_listSaveingObjects);
             }
 
             if (CheckLoad())
             {
-                _dataRepository.Load(_loadingObjects);
+                _dataRepository.Load(_listSaveingObjects);
             }
         }
 

@@ -12,8 +12,6 @@ namespace ShipovMihail_Roll_A_Boll
         private const string _folderName = "SavedData";
         private const string _fileName = "Data.bat";
         private readonly string _path;
-        private List<SavedData> savingObjects = new List<SavedData>();
-        private List<GameObject> loadingObjects = new List<GameObject>();
 
         public SaveDataRepository()
         {
@@ -23,7 +21,7 @@ namespace ShipovMihail_Roll_A_Boll
             }
             else
             {
-                _data = new XMLData();
+                _data = new XMLData<SavedData>();
             }
 
             _path = Path.Combine(Application.dataPath, _folderName);
@@ -31,24 +29,33 @@ namespace ShipovMihail_Roll_A_Boll
 
         public void Save<T>(T[] objects)
         {
+            Debug.Log(objects.Length);
             if (!Directory.Exists(Path.Combine(_path)))
             {
+                Directory.CreateDirectory(_path);
+            }
+
+            List<SavedData> savingObjects = new List<SavedData>();
+
+            for (int i = 0; i < objects.Length; i++)
+            {
+                if (objects[i] is GameObject loadingObject)
                 {
-                    Directory.CreateDirectory(_path);
+                    savingObjects.Add(new SavedData()
+                    {
+                        Name = loadingObject.name,
+                        Position = loadingObject.transform.position,
+                        IsEnable = loadingObject.gameObject.activeSelf
+                    });
                 }
             }
 
-            //for (int i = 0; i < objects.Length; i++)
-            //{
-            //    savingObjects.Add(objects[i] as SavedData);
-            //}
 
-            _data.Save(Path.Combine(_path, _fileName), objects as SavedData[]);
+            _data.Save(Path.Combine(_path, _fileName), savingObjects.ToArray() as SavedData[]);
+            Debug.Log("Saved");
         }
-
-        public void Load(List<InteractiveObject> objects)
+        public void Load<T>(T[] objects)
         {
-            Debug.Log(objects.Count);
             var file = Path.Combine(_path, _fileName);
             if (!File.Exists(file))
             {
@@ -57,16 +64,19 @@ namespace ShipovMihail_Roll_A_Boll
 
             var newObject = _data.Load(file);
 
-            for (int i = 0; i < objects.Count; i++)
+            Debug.Log(objects.Length);
+            for (int i = 0; i < objects.Length; i++)
             {
-                if (objects[i] != null)
+                if (objects[i] is GameObject loadingObject)
                 {
-                    objects[i].transform.position = newObject[i].Position;
-                    objects[i].name = newObject[i].Name;
-                    objects[i].gameObject.SetActive(newObject[i].IsEnable);
-                    Debug.Log(newObject);
+                    loadingObject.transform.position = newObject[i].Position;
+                    loadingObject.name = newObject[i].Name;
+                    loadingObject.gameObject.SetActive(newObject[i].IsEnable);
                 }
             }
+
+            Debug.Log("Loaded");
         }
+
     }
 }
