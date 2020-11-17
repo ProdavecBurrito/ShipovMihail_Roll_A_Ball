@@ -29,7 +29,7 @@ namespace ShipovMihail_Roll_A_Boll
             _path = Path.Combine(Application.dataPath, _folderName);
         }
 
-        public void Save<T>(List<T> objects)
+        public void Save<T>(T[] objects)
         {
             if (!Directory.Exists(Path.Combine(_path)))
             {
@@ -38,24 +38,12 @@ namespace ShipovMihail_Roll_A_Boll
                 }
             }
 
-            for (int i = 0; i < objects.Count; i++)
-            {
-                savingObjects.Add(objects[i] as SavedData);
-                //if (objects[i] is InteractiveObject savingObject)
-                //{
-                //    var saveObject = new SavedData
-                //    {
-                //        Position = savingObject.transform.position,
-                //        Name = savingObject.name,
-                //        IsEnable = savingObject.gameObject.activeSelf
-                //    };
-                //}
-            }
+            //for (int i = 0; i < objects.Length; i++)
+            //{
+            //    savingObjects.Add(objects[i] as SavedData);
+            //}
 
-            for (int i = 0; i < savingObjects.Count; i++)
-            {
-                _data.Save(Path.Combine(_path, _fileName), savingObjects[i]);
-            }
+            _data.Save(Path.Combine(_path, _fileName), objects as SavedData[]);
         }
 
         public void Load(List<InteractiveObject> objects)
@@ -71,11 +59,13 @@ namespace ShipovMihail_Roll_A_Boll
 
             for (int i = 0; i < objects.Count; i++)
             {
-
-                objects[i].transform.position = newObject[i].Position;
-                objects[i].name = newObject[i].Name;
-                objects[i].gameObject.SetActive(newObject[i].IsEnable);
-                Debug.Log(newObject);
+                if (objects[i] != null)
+                {
+                    objects[i].transform.position = newObject[i].Position;
+                    objects[i].name = newObject[i].Name;
+                    objects[i].gameObject.SetActive(newObject[i].IsEnable);
+                    Debug.Log(newObject);
+                }
             }
         }
     }

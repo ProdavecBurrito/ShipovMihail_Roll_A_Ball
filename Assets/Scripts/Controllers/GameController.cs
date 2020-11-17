@@ -18,6 +18,7 @@ namespace ShipovMihail_Roll_A_Boll
         private InputController _inputController;
         private References _reference;
         private List<GoodBonusController> _goodBonuses;
+        private List<BadBonusController> _badBonuses;
         private List<SavedData> _savingObjects;
         private List<InteractiveObject> _loadingObjects;
         private int _totalScoreObjects;
@@ -37,6 +38,7 @@ namespace ShipovMihail_Roll_A_Boll
             _displayScore = new DisplayScore(_reference.Score);
             _playerEffects = FindObjectOfType<PlayerEffects>();
             _goodBonuses = _reference.GetGoodBonuses;
+            _badBonuses = _reference.GetBadBonus;
             _loadingObjects = new List<InteractiveObject>();
             _savingObjects = new List<SavedData>();
 
@@ -51,13 +53,20 @@ namespace ShipovMihail_Roll_A_Boll
                 item.BonusChange += _cameraController.ShakeCamera;
             }
 
+            foreach (var item in _badBonuses)
+            {
+                _updatingObjects.AddUpdateObject(item);
+                item.CaughtPlayer += CaughtPlayer;
+                item.CaughtPlayer += _displayEndGame.GameOver;
+            }
+
             for (int i = 0; i < _updatingObjects.Count; i++)
             {
-                if (_updatingObjects[i] is BadBonus badBonus)
-                {
-                    badBonus.CaughtPlayer += CaughtPlayer;
-                    badBonus.CaughtPlayer += _displayEndGame.GameOver;
-                }
+                //if (_updatingObjects[i] is BadBonus badBonus)
+                //{
+                //    badBonus.CaughtPlayer += CaughtPlayer;
+                //    badBonus.CaughtPlayer += _displayEndGame.GameOver;
+                //}
 
                 if (_updatingObjects[i] is InteractiveObject interactiveObj)
                 {

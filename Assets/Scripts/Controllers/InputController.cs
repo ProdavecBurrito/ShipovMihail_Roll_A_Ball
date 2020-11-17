@@ -9,7 +9,7 @@ namespace ShipovMihail_Roll_A_Boll
         private SaveDataRepository _dataRepository;
         private KeyCode Save = KeyCode.F5;
         private KeyCode Load = KeyCode.F9;
-        private List<SavedData> _listSaveingObjects;
+        private SavedData [] _listSaveingObjects;
         private References references;
         private List<InteractiveObject> _loadingObjects;
 
@@ -19,7 +19,7 @@ namespace ShipovMihail_Roll_A_Boll
 
             _playerBall = playerBall;
 
-            _listSaveingObjects = listISaveObjects;
+            _listSaveingObjects = listISaveObjects.ToArray();
 
             _dataRepository = new SaveDataRepository();
         }
