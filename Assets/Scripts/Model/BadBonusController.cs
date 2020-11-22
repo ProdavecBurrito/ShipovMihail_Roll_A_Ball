@@ -1,15 +1,10 @@
 ﻿using UnityEngine;
-using static UnityEngine.Debug;
-using System;
-using Random = UnityEngine.Random;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    internal sealed class BadBonus : InteractiveObject, IFly, IFlicker, IRotation, IUpdate, IDisposable
+    class BadBonusController : BadBonusBase
     {
-        private Material _material;
-        private float _flyHight;
-        private float _rotationSpeed;
+
         public delegate void CaughtPlayerChange(string objectName, Color color);
         public event CaughtPlayerChange CaughtPlayer = delegate (string value, Color color) { };
 
@@ -25,17 +20,17 @@ namespace ShipovMihail_Roll_A_Boll
             CaughtPlayer.Invoke(gameObject.name, _color);
         }
 
-        public void Fly()
+        public override void Fly()
         {
             transform.position = new Vector3(transform.position.x, Mathf.PingPong(Time.time, _flyHight), transform.position.z);
         }
 
-        public void Flicker()
+        public override void Flicker()
         {
             _material.color = new Color(_material.color.r, _material.color.g, _material.color.b, Mathf.PingPong(Time.time, 1.0f));
         }
 
-        public void Rotation()
+        public override void Rotation()
         {
             transform.Rotate(Vector3.up * (Time.deltaTime * _rotationSpeed), Space.World);
         }
@@ -50,7 +45,7 @@ namespace ShipovMihail_Roll_A_Boll
             }
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
             Destroy(gameObject);
         }
