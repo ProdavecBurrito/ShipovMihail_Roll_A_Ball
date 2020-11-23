@@ -5,7 +5,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>2.98</X>
-      <Y>1.52038</Y>
+      <Y>0.627534866</Y>
       <Z>-6.17</Z>
     </Position>
   </SavedData>
@@ -14,7 +14,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>11.92</X>
-      <Y>1.0859642</Y>
+      <Y>1.29102516</Y>
       <Z>-6.17</Z>
     </Position>
   </SavedData>
@@ -23,7 +23,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>3.4</X>
-      <Y>0.792762756</Y>
+      <Y>0.7421608</Y>
       <Z>13.4</Z>
     </Position>
   </SavedData>
@@ -32,7 +32,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>-16.5</X>
-      <Y>1.75397491</Y>
+      <Y>1.54780388</Y>
       <Z>-0.6000004</Z>
     </Position>
   </SavedData>
@@ -41,7 +41,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>-22.4</X>
-      <Y>0.342460632</Y>
+      <Y>1.41354179</Y>
       <Z>15.6</Z>
     </Position>
   </SavedData>
@@ -50,7 +50,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>17</X>
-      <Y>0.0816688538</Y>
+      <Y>1.11546516</Y>
       <Z>20.1</Z>
     </Position>
   </SavedData>
@@ -59,7 +59,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>22.4</X>
-      <Y>1.69324875</Y>
+      <Y>1.23822594</Y>
       <Z>-20.9</Z>
     </Position>
   </SavedData>
@@ -68,7 +68,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>2.54607439</X>
-      <Y>0.9340973</Y>
+      <Y>1.54780388</Y>
       <Z>-15.7747</Z>
     </Position>
   </SavedData>
@@ -77,7 +77,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>-17.533926</X>
-      <Y>1.03222847</Y>
+      <Y>0.309972763</Y>
       <Z>-21.5047</Z>
     </Position>
   </SavedData>
@@ -86,7 +86,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>-16.5139256</X>
-      <Y>0.4841938</Y>
+      <Y>0.45721817</Y>
       <Z>6.13530064</Z>
     </Position>
   </SavedData>
@@ -95,7 +95,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>7.7260747</X>
-      <Y>0.78440094</Y>
+      <Y>0.2809372</Y>
       <Z>8.185301</Z>
     </Position>
   </SavedData>
@@ -104,7 +104,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>17.4460754</X>
-      <Y>0.7756882</Y>
+      <Y>1.25899315</Y>
       <Z>-19.6346989</Z>
     </Position>
   </SavedData>
@@ -112,9 +112,9 @@
     <Name>Player(Clone)</Name>
     <IsEnable>true</IsEnable>
     <Position>
-      <X>-18.9106522</X>
+      <X>-22.8382645</X>
       <Y>-0.4654665</Y>
-      <Z>-9.646204</Z>
+      <Z>-17.1055031</Z>
     </Position>
   </SavedData>
-</ArrayOfSavedData>
+</ArrayOfSavedData>kXXKSeLyK\ONnK^K

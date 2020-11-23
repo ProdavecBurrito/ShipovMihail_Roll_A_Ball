@@ -44,5 +44,25 @@ namespace ShipovMihail_Roll_A_Boll
 
         public abstract void UpdateTick();
 
+        [SerializeField] private bool _isAllowScaling;
+        [SerializeField] private float ActiveDis;
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawIcon(transform.position, "Doggi.jpg", _isAllowScaling);
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+#if UNITY_EDITOR
+            if (IsInteractable)
+            {
+                var flat = new Vector3(ActiveDis, 0, ActiveDis);
+                Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, flat);
+                Gizmos.DrawWireSphere(Vector3.zero, 5);
+            }
+#endif
+        }
+
     }
 }

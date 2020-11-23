@@ -7,6 +7,7 @@ namespace ShipovMihail_Roll_A_Boll
 {
     public sealed class GoodBonus : InteractiveObject, IFly, IFlicker, IUpdate, IDisposable
     {
+        [Range(1, 10)]
         public float Point;
 
         private Material _material;
