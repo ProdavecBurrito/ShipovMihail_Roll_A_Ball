@@ -52,7 +52,6 @@ namespace ShipovMihail_Roll_A_Boll
                             tempRenderer.material.color = Random.ColorHSV();
                         }
                     }
-
                 }
             }
         }
