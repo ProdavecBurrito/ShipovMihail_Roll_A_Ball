@@ -7,38 +7,41 @@ namespace ShipovMihail_Roll_A_Boll
 {
     public class GameController : MonoBehaviour, IDisposable
     {
+        private ObjectsInitializator _objectsInitializator;
 
-        private PlayerEffects _playerEffects;
-        private PlayerBall _playerBall;
-        private CameraController _cameraController;
-        private ListIUpdateObjects _updatingObjects;
-        private DisplayEndGame _displayEndGame;
-        private DisplayWinGame _displayWin;
-        private DisplayScore _displayScore;
-        private InputController _inputController;
-        private References _reference;
-        private List<GoodBonusController> _goodBonuses;
-        private List<BadBonusController> _badBonuses;
-        private List<GameObject> _savingObjects;
-        private int _totalScoreObjects;
+        //private PlayerEffects _playerEffects;
+        //private PlayerBall _playerBall;
+        //private CameraController _cameraController;
+        //private ListIUpdateObjects _updatingObjects;
+        //private DisplayEndGame _displayEndGame;
+        //private DisplayWinGame _displayWin;
+        //private DisplayScore _displayScore;
+        //private InputController _inputController;
+        //private References _reference;
+        //private List<GoodBonusController> _goodBonuses;
+        //private List<BadBonusController> _badBonuses;
+        //private List<GameObject> _savingObjects;
+        //private int _totalScoreObjects;
 
-        private float _currentScore;
+        //private float _currentScore;
 
         private void Awake()
         {
-            _updatingObjects = new ListIUpdateObjects();
+            _objectsInitializator = new ObjectsInitializator();
 
-            _reference = new References();
+            //    _updatingObjects = new ListIUpdateObjects();
 
-            _playerBall = _reference.GetPlayerBall;
-            _displayEndGame = new DisplayEndGame(_reference.EndGame);
-            _displayWin = new DisplayWinGame(_reference.WinGame);
-            _displayScore = new DisplayScore(_reference.Score);
-            _playerEffects = _playerBall.GetComponent<PlayerEffects>();
-            _goodBonuses = _reference.GetGoodBonuses;
-            _badBonuses = _reference.GetBadBonus;
-            _savingObjects = new List<GameObject>();
-            _cameraController = new CameraController(_playerBall.transform, _reference.GetMainCamera.transform, _reference.GetCameraAnimator);
+            //    _reference = new References();
+
+            //    _playerBall = _reference.GetPlayerBall;
+            //    _displayEndGame = new DisplayEndGame(_reference.EndGame);
+            //    _displayWin = new DisplayWinGame(_reference.WinGame);
+            //    _displayScore = new DisplayScore(_reference.Score);
+            //    _playerEffects = _playerBall.GetComponent<PlayerEffects>();
+            //    _goodBonuses = _reference.GetGoodBonuses;
+            //    _badBonuses = _reference.GetBadBonus;
+            //    _savingObjects = new List<GameObject>();
+            //    _cameraController = new CameraController(_playerBall.transform, _reference.GetMainCamera.transform, _reference.GetCameraAnimator);
 
             foreach (var item in _goodBonuses)
             {
@@ -56,7 +59,7 @@ namespace ShipovMihail_Roll_A_Boll
             }
             for (int i = 0; i < _updatingObjects.Count; i++)
             {
-                if(_updatingObjects[i] is InteractiveObject interactiveObject)
+                if (_updatingObjects[i] is InteractiveObject interactiveObject)
                 {
                     _savingObjects.Add(interactiveObject.gameObject);
                 }
@@ -75,32 +78,32 @@ namespace ShipovMihail_Roll_A_Boll
 
         private void Update()
         {
-            for (int i = 0; i < _updatingObjects.Count; i++)
+            for (int i = 0; i < _objectsInitializator.UpdatingObjects.Count; i++)
             {
-                if (_updatingObjects[i] == null)
+                if (_objectsInitializator.UpdatingObjects[i] == null)
                 {
                     continue;
                 }
 
-                if (_updatingObjects[i] is GoodBonusController goodBonusController)
+                if (_objectsInitializator.UpdatingObjects[i] is GoodBonusController goodBonusController)
                 {
                     if (!goodBonusController.IsInteractable)
                     {
-                        _updatingObjects.RemoveUpdatingObject(goodBonusController);
-                        _totalScoreObjects--;
+                        _objectsInitializator.UpdatingObjects.RemoveUpdatingObject(goodBonusController);
+                        _objectsInitializator.TotalScoreObjects--;
                         Destroy(goodBonusController);
                         continue;
                     }
                 }
-                _updatingObjects[i].UpdateTick();
+                _objectsInitializator.UpdatingObjects[i].UpdateTick();
             }
 
-            if (_playerEffects.Timers.Count != 0)
+            if (_objectsInitializator.PlayerEffects.Timers.Count != 0)
             {
-                _playerEffects.UpdateTick();
+                _objectsInitializator.PlayerEffects.UpdateTick();
             }
 
-            if (_totalScoreObjects < 1)
+            if (_objectsInitializator.TotalScoreObjects < 1)
             {
                 WinGame();
             }
@@ -120,11 +123,11 @@ namespace ShipovMihail_Roll_A_Boll
 
         public void Dispose()
         {
-            for (int i = 0; i < _updatingObjects.Count; i++)
+            for (int i = 0; i < _objectsInitializator.UpdatingObjects.Count; i++)
             {
-                if (_updatingObjects[i] is BadBonus badBonus)
+                if (_objectsInitializator.UpdatingObjects[i] is BadBonus badBonus)
                 {
-                    badBonus.CaughtPlayer -= CaughtPlayer;
+                    badBonus.CaughtPlayer -= _objectsInitializator.CaughtPlayer;
                     badBonus.CaughtPlayer -= _displayEndGame.GameOver;
                 }
 
