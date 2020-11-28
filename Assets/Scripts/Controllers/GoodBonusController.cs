@@ -2,12 +2,12 @@
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    class GoodBonusController : GoodBonusBase
+    internal class GoodBonusController : GoodBonusBase
     {
         public delegate void BonusChangeValue(float value);
         public event BonusChangeValue BonusChange = delegate (float val) { };
 
-        private void Start()
+        public override void AwakeTick()
         {
             _material = GetComponent<Renderer>().material;
             _flyHight = Random.Range(1.0f, 2.0f);

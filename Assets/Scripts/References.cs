@@ -6,6 +6,7 @@ namespace ShipovMihail_Roll_A_Boll
 {
     public class References
     {
+        private PlayerEffects _playerEffects;
         private PlayerBall _playerBall;
         private Camera _mainCamera;
         private Animator _cameraAnimator;
@@ -14,8 +15,64 @@ namespace ShipovMihail_Roll_A_Boll
         private GameObject _winGame;
         private GameObject _score;
         private Button _restartButton;
+        private List<SpeedBonusController> _speedBonus;
+        private List<ReduceSpeedController> _reduceSpeed;
         private List<GoodBonusController> _goodBonuses;
         private List<BadBonusController> _badBonuses;
+
+        internal List<SpeedBonusController> GetSpeedBonus
+        {
+            get
+            {
+                if (_speedBonus == null)
+                {
+                    _speedBonus = new List<SpeedBonusController>();
+                    var speedBonusObject = Resources.Load<GameObject>("SpeedBonus");
+                    var speedBonusInst = Object.Instantiate(speedBonusObject);
+                    var speedBonusDivider = speedBonusInst.GetComponentsInChildren<SpeedBonusController>();
+                    foreach (var item in speedBonusDivider)
+                    {
+                        _speedBonus.Add(new SpeedBonusController(_playerEffects));
+                    }
+                }
+
+                Debug.Log(_speedBonus.Count);
+                return _speedBonus;
+            }
+        }
+
+        internal List<ReduceSpeedController> GetReduceSpeedBonuses
+        {
+            get
+            {
+                if (_reduceSpeed == null)
+                {
+                    _reduceSpeed = new List<ReduceSpeedController>();
+                    var reduceSpeedBonusObject = Resources.Load<GameObject>("ReduceSpeedBonus");
+                    var reduceSpeedBonusInst = Object.Instantiate(reduceSpeedBonusObject);
+                    var reduceSpeedBonusDivider = reduceSpeedBonusInst.GetComponentsInChildren<ReduceSpeedController>();
+                    for (int i = 0; i < reduceSpeedBonusDivider.Length; i++)
+                    {
+                        _reduceSpeed.Add(reduceSpeedBonusDivider[i]);
+                    }
+                }
+
+                return _reduceSpeed;
+            }
+        }
+
+        internal PlayerEffects GetPlayerEffects
+        {
+            get
+            {
+                if (_playerEffects == null)
+                {
+                    _playerEffects = new PlayerEffects(_playerBall);
+                }
+
+                return _playerEffects;
+            }
+        }
 
         internal PlayerBall GetPlayerBall
         {

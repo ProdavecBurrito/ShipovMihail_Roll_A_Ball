@@ -1,17 +1,16 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    internal sealed class PlayerEffects : MonoBehaviour, IUpdate
+    internal sealed class PlayerEffects : IUpdate
     {
         private Timer _timer;
         public List<Timer> Timers = new List<Timer>();
-        private PlayerBase _player;
+        private PlayerBall _player;
 
-        private void Start()
+        public PlayerEffects(PlayerBall playerBall)
         {
-            _player = GetComponent<PlayerBase>();
+            _player = playerBall;
         }
 
         public void UpdateTick()

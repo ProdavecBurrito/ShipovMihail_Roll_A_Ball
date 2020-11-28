@@ -1,79 +1,40 @@
 ﻿using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
-using System.Collections.Generic;
 
 namespace ShipovMihail_Roll_A_Boll
 {
     public class GameController : MonoBehaviour, IDisposable
     {
         private ObjectsInitializator _objectsInitializator;
-
-        //private PlayerEffects _playerEffects;
-        //private PlayerBall _playerBall;
-        //private CameraController _cameraController;
-        //private ListIUpdateObjects _updatingObjects;
-        //private DisplayEndGame _displayEndGame;
-        //private DisplayWinGame _displayWin;
-        //private DisplayScore _displayScore;
-        //private InputController _inputController;
-        //private References _reference;
-        //private List<GoodBonusController> _goodBonuses;
-        //private List<BadBonusController> _badBonuses;
-        //private List<GameObject> _savingObjects;
-        //private int _totalScoreObjects;
-
-        //private float _currentScore;
+        private float _currentScore;
 
         private void Awake()
         {
             _objectsInitializator = new ObjectsInitializator();
 
-            //    _updatingObjects = new ListIUpdateObjects();
-
-            //    _reference = new References();
-
-            //    _playerBall = _reference.GetPlayerBall;
-            //    _displayEndGame = new DisplayEndGame(_reference.EndGame);
-            //    _displayWin = new DisplayWinGame(_reference.WinGame);
-            //    _displayScore = new DisplayScore(_reference.Score);
-            //    _playerEffects = _playerBall.GetComponent<PlayerEffects>();
-            //    _goodBonuses = _reference.GetGoodBonuses;
-            //    _badBonuses = _reference.GetBadBonus;
-            //    _savingObjects = new List<GameObject>();
-            //    _cameraController = new CameraController(_playerBall.transform, _reference.GetMainCamera.transform, _reference.GetCameraAnimator);
-
-            foreach (var item in _goodBonuses)
+            for (int i = 0; i < _objectsInitializator.UpdatingObjects.Count; i++)
             {
-                _updatingObjects.AddUpdateObject(item);
-                _totalScoreObjects++;
-                item.BonusChange += AddScore;
-                item.BonusChange += _cameraController.ShakeCamera;
-            }
-
-            foreach (var item in _badBonuses)
-            {
-                _updatingObjects.AddUpdateObject(item);
-                item.CaughtPlayer += CaughtPlayer;
-                item.CaughtPlayer += _displayEndGame.GameOver;
-            }
-            for (int i = 0; i < _updatingObjects.Count; i++)
-            {
-                if (_updatingObjects[i] is InteractiveObject interactiveObject)
+                if (_objectsInitializator.UpdatingObjects[i] is IAwake startingObject)
                 {
-                    _savingObjects.Add(interactiveObject.gameObject);
+                    startingObject.AwakeTick();
                 }
             }
 
-            _savingObjects.Add(_playerBall.gameObject);
+            foreach (var item in _objectsInitializator.GoodBonuses)
+            {
+                item.BonusChange += AddScore;
+                item.BonusChange += _objectsInitializator.CameraController.ShakeCamera;
+            }
 
-            _inputController = new InputController(_savingObjects, _playerBall);
+            foreach (var item in _objectsInitializator.BadBonuses)
+            {
+                item.CaughtPlayer += CaughtPlayer;
+                item.CaughtPlayer += _objectsInitializator.DisplayEndGame.GameOver;
+            }
 
-            _updatingObjects.AddUpdateObject(_cameraController);
-            _updatingObjects.AddUpdateObject(_inputController);
-
-            _reference.RestartButton.onClick.AddListener(RestartGame);
-            _reference.RestartButton.gameObject.SetActive(false);
+            _objectsInitializator.Reference.RestartButton.onClick.AddListener(RestartGame);
+            _objectsInitializator.Reference.RestartButton.gameObject.SetActive(false);
         }
 
         private void Update()
@@ -95,6 +56,7 @@ namespace ShipovMihail_Roll_A_Boll
                         continue;
                     }
                 }
+                
                 _objectsInitializator.UpdatingObjects[i].UpdateTick();
             }
 
@@ -111,14 +73,14 @@ namespace ShipovMihail_Roll_A_Boll
 
         private void CaughtPlayer(string value, Color args)
         {
-            _reference.RestartButton.gameObject.SetActive(true);
+            _objectsInitializator.Reference.RestartButton.gameObject.SetActive(true);
             Time.timeScale = 0.0f;
         }
 
         private void AddScore(float value)
         {
             _currentScore += value;
-            _displayScore.Display(_currentScore / _totalScoreObjects);
+            _objectsInitializator.DisplayScore.Display(_currentScore / _objectsInitializator.TotalScoreObjects);
         }
 
         public void Dispose()
@@ -127,11 +89,11 @@ namespace ShipovMihail_Roll_A_Boll
             {
                 if (_objectsInitializator.UpdatingObjects[i] is BadBonus badBonus)
                 {
-                    badBonus.CaughtPlayer -= _objectsInitializator.CaughtPlayer;
-                    badBonus.CaughtPlayer -= _displayEndGame.GameOver;
+                    badBonus.CaughtPlayer -= CaughtPlayer;
+                    badBonus.CaughtPlayer -= _objectsInitializator.DisplayEndGame.GameOver;
                 }
 
-                if (_updatingObjects[i] is GoodBonusController goodBonus)
+                if (_objectsInitializator.UpdatingObjects[i] is GoodBonusController goodBonus)
                 {
                     goodBonus.BonusChange -= AddScore;
                 }
@@ -146,8 +108,8 @@ namespace ShipovMihail_Roll_A_Boll
 
         private void WinGame()
         {
-            _displayWin.СongratulationWinText(_currentScore);
-            _reference.RestartButton.gameObject.SetActive(true);
+            _objectsInitializator.DisplayWin.СongratulationWinText(_currentScore);
+            _objectsInitializator.Reference.RestartButton.gameObject.SetActive(true);
             Time.timeScale = 0.0f;
         }
     }

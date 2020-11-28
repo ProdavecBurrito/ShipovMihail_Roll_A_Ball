@@ -3,9 +3,8 @@
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public abstract class InteractiveObject : MonoBehaviour, IInteracteble, IUpdate, ISaving
+    public abstract class InteractiveObject : MonoBehaviour, IInteracteble, IUpdate, ISaving, IAwake
     {
-
         protected Color _color;
         private bool _isInteractable;
         public bool IsInteractable
@@ -19,7 +18,7 @@ namespace ShipovMihail_Roll_A_Boll
             }
         }
 
-        private void Awake()
+        public virtual void AwakeTick()
         {
             IsInteractable = true;
             _color = Random.ColorHSV();

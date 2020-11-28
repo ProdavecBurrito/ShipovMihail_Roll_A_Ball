@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace ShipovMihail_Roll_A_Boll
 {
@@ -15,6 +14,8 @@ namespace ShipovMihail_Roll_A_Boll
         private DisplayScore _displayScore;
         private InputController _inputController;
         private References _reference;
+        private List<ReduceSpeedController> _reduceSpeed;
+        private List<SpeedBonusController> _speedBonus;
         private List<GoodBonusController> _goodBonuses;
         private List<BadBonusController> _badBonuses;
         private List<GameObject> _savingObjects;
@@ -35,6 +36,8 @@ namespace ShipovMihail_Roll_A_Boll
         internal List<BadBonusController> BadBonuses { get => _badBonuses; private set => _badBonuses = value; }
         public List<GameObject> SavingObjects { get => _savingObjects; private set => _savingObjects = value; }
         public int TotalScoreObjects { get => _totalScoreObjects; set => _totalScoreObjects = value; }
+        internal List<SpeedBonusController> SpeedBonus { get => _speedBonus; private set => _speedBonus = value; }
+        internal List<ReduceSpeedController> ReduceSpeed { get => _reduceSpeed; private set => _reduceSpeed = value; }
 
         public ObjectsInitializator()
         {
@@ -46,7 +49,9 @@ namespace ShipovMihail_Roll_A_Boll
             DisplayEndGame = new DisplayEndGame(Reference.EndGame);
             DisplayWin = new DisplayWinGame(Reference.WinGame);
             DisplayScore = new DisplayScore(Reference.Score);
-            _playerEffects = PlayerBall.GetComponent<PlayerEffects>();
+            _playerEffects = _reference.GetPlayerEffects;
+            ReduceSpeed = Reference.GetReduceSpeedBonuses;
+            SpeedBonus = Reference.GetSpeedBonus;
             GoodBonuses = Reference.GetGoodBonuses;
             BadBonuses = Reference.GetBadBonus;
             SavingObjects = new List<GameObject>();
@@ -56,21 +61,32 @@ namespace ShipovMihail_Roll_A_Boll
             {
                 UpdatingObjects.AddUpdateObject(item);
                 TotalScoreObjects++;
-                item.BonusChange += AddScore;
-                item.BonusChange += CameraController.ShakeCamera;
             }
 
             foreach (var item in BadBonuses)
             {
                 UpdatingObjects.AddUpdateObject(item);
-                item.CaughtPlayer += CaughtPlayer;
-                item.CaughtPlayer += DisplayEndGame.GameOver;
             }
+
+            foreach (var item in ReduceSpeed)
+            {
+                UpdatingObjects.AddUpdateObject(item);
+            }
+
+            foreach (var item in SpeedBonus)
+            {
+                UpdatingObjects.AddUpdateObject(item);
+            }
+
             for (int i = 0; i < UpdatingObjects.Count; i++)
             {
                 if (UpdatingObjects[i] is InteractiveObject interactiveObject)
                 {
-                    SavingObjects.Add(interactiveObject.gameObject);
+                    if (interactiveObject != null)
+                    {
+                        //Debug.Log(interactiveObject);
+                        SavingObjects.Add(interactiveObject.gameObject);
+                    }
                 }
             }
 
@@ -80,27 +96,6 @@ namespace ShipovMihail_Roll_A_Boll
 
             UpdatingObjects.AddUpdateObject(CameraController);
             UpdatingObjects.AddUpdateObject(InputController);
-
-            Reference.RestartButton.onClick.AddListener(RestartGame);
-            Reference.RestartButton.gameObject.SetActive(false);
-        }
-
-        private void CaughtPlayer(string value, Color args)
-        {
-            Reference.RestartButton.gameObject.SetActive(true);
-            Time.timeScale = 0.0f;
-        }
-
-        private void AddScore(float value)
-        {
-            _currentScore += value;
-            DisplayScore.Display(_currentScore / TotalScoreObjects);
-        }
-
-        private void RestartGame()
-        {
-            SceneManager.LoadScene(sceneBuildIndex: 0);
-            Time.timeScale = 1.0f;
         }
     }
 }
