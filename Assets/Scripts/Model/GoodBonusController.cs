@@ -1,16 +1,9 @@
 ﻿using UnityEngine;
-using static UnityEngine.Debug;
-using System;
-using Random = UnityEngine.Random;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public sealed class GoodBonus : InteractiveObject, IFly, IFlicker, IUpdate, IDisposable
+    class GoodBonusController : GoodBonusBase
     {
-        public float Point;
-
-        private Material _material;
-        private float _flyHight;
         public delegate void BonusChangeValue(float value);
         public event BonusChangeValue BonusChange = delegate (float val) { };
 
@@ -25,13 +18,12 @@ namespace ShipovMihail_Roll_A_Boll
             BonusChange.Invoke(Point);
         }
 
-        public void Fly()
+        public override void Fly()
         {
             transform.position = new Vector3(transform.position.x, Mathf.PingPong(Time.time, _flyHight), transform.position.z);
-
         }
 
-        public void Flicker()
+        public override void Flicker()
         {
             _material.color = new Color(_material.color.r, _material.color.g, _material.color.b, Mathf.PingPong(Time.time, 1.0f));
         }
@@ -45,7 +37,7 @@ namespace ShipovMihail_Roll_A_Boll
             }
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
             Destroy(gameObject);
         }
