@@ -57,15 +57,15 @@ namespace ShipovMihail_Roll_A_Boll
             SavingObjects = new List<GameObject>();
             CameraController = new CameraController(PlayerBall.transform, Reference.GetMainCamera.transform, Reference.GetCameraAnimator);
 
+            foreach (var item in BadBonuses)
+            {
+                UpdatingObjects.AddUpdateObject(item);
+            }
+
             foreach (var item in GoodBonuses)
             {
                 UpdatingObjects.AddUpdateObject(item);
                 TotalScoreObjects++;
-            }
-
-            foreach (var item in BadBonuses)
-            {
-                UpdatingObjects.AddUpdateObject(item);
             }
 
             foreach (var item in ReduceSpeed)
@@ -84,7 +84,6 @@ namespace ShipovMihail_Roll_A_Boll
                 {
                     if (interactiveObject != null)
                     {
-                        //Debug.Log(interactiveObject);
                         SavingObjects.Add(interactiveObject.gameObject);
                     }
                 }

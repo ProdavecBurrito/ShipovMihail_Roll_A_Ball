@@ -32,11 +32,10 @@ namespace ShipovMihail_Roll_A_Boll
                     var speedBonusDivider = speedBonusInst.GetComponentsInChildren<SpeedBonusController>();
                     foreach (var item in speedBonusDivider)
                     {
-                        _speedBonus.Add(new SpeedBonusController(_playerEffects));
+                        _speedBonus.Add(item);
                     }
                 }
 
-                Debug.Log(_speedBonus.Count);
                 return _speedBonus;
             }
         }
@@ -67,7 +66,7 @@ namespace ShipovMihail_Roll_A_Boll
             {
                 if (_playerEffects == null)
                 {
-                    _playerEffects = new PlayerEffects(_playerBall);
+                    _playerEffects = new PlayerEffects();
                 }
 
                 return _playerEffects;
@@ -95,7 +94,6 @@ namespace ShipovMihail_Roll_A_Boll
                 if (_mainCamera == null)
                 {
                     _mainCamera = Camera.main;
-                    _cameraAnimator = _mainCamera.GetComponent<Animator>();
                 }
 
                 return _mainCamera;

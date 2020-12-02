@@ -4,10 +4,8 @@ namespace ShipovMihail_Roll_A_Boll
 {
     internal class SpeedBonusController : SpeedBonusBase
     {
-        public SpeedBonusController(PlayerEffects playerEffects)
-        {
-            _playerEffects = playerEffects;
-        }
+        public delegate void SpeedBust(float time);
+        public event SpeedBust BustSpeed = delegate (float time) { };
 
         public override void AwakeTick()
         {
@@ -19,7 +17,7 @@ namespace ShipovMihail_Roll_A_Boll
 
         protected override void Interaction()
         {
-            _playerEffects.BustSpeed(_boostTime);
+            BustSpeed.Invoke(_boostTime);
         }
 
         public override void Fly()

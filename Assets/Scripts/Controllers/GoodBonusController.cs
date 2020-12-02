@@ -9,6 +9,7 @@ namespace ShipovMihail_Roll_A_Boll
 
         public override void AwakeTick()
         {
+            base.AwakeTick();
             _material = GetComponent<Renderer>().material;
             _flyHight = Random.Range(1.0f, 2.0f);
         }

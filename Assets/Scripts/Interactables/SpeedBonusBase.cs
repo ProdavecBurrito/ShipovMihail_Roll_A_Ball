@@ -2,7 +2,7 @@
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    internal abstract class SpeedBonusBase : InteractiveObject, IFly, IRotation, IFlicker, IUpdate, IAwake
+    internal abstract class SpeedBonusBase : InteractiveObject, IFly, IRotation, IFlicker
     {
         protected PlayerEffects _playerEffects;
         protected float _flyHight;

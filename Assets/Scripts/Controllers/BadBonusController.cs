@@ -8,8 +8,9 @@ namespace ShipovMihail_Roll_A_Boll
         public delegate void CaughtPlayerChange(string objectName, Color color);
         public event CaughtPlayerChange CaughtPlayer = delegate (string value, Color color) { };
 
-        private void Start()
+        public override void AwakeTick()
         {
+            base.AwakeTick();
             _material = GetComponent<Renderer>().material;
             _flyHight = Random.Range(0.5f, 1.5f);
             _rotationSpeed = Random.Range(15.0f, 60.0f);

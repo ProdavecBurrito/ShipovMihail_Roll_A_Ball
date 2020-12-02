@@ -5,6 +5,9 @@ namespace ShipovMihail_Roll_A_Boll
 {
     public abstract class InteractiveObject : MonoBehaviour, IInteracteble, IUpdate, ISaving, IAwake
     {
+        [SerializeField] private bool _isAllowScaling;
+        [SerializeField] private float _activeDis;
+
         protected Color _color;
         private bool _isInteractable;
         public bool IsInteractable
@@ -43,9 +46,6 @@ namespace ShipovMihail_Roll_A_Boll
 
         public abstract void UpdateTick();
 
-        [SerializeField] private bool _isAllowScaling;
-        [SerializeField] private float ActiveDis;
-
         private void OnDrawGizmos()
         {
             Gizmos.DrawIcon(transform.position, "Doggi.jpg", _isAllowScaling);
@@ -56,7 +56,7 @@ namespace ShipovMihail_Roll_A_Boll
 #if UNITY_EDITOR
             if (IsInteractable)
             {
-                var flat = new Vector3(ActiveDis, 0, ActiveDis);
+                var flat = new Vector3(_activeDis, 0, _activeDis);
                 Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, flat);
                 Gizmos.DrawWireSphere(Vector3.zero, 5);
             }

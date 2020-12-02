@@ -8,7 +8,9 @@ namespace ShipovMihail_Roll_A_Boll
         protected float _rotationSpeed;
         protected Material _material;
         protected PlayerEffects _playerEffects;
-        protected float _boostTime = 5.0f;
+        private float boostTime = 5.0f;
+
+        public float BoostTime { get => boostTime; private set => boostTime = value; }
 
         public abstract void Fly();
 

@@ -4,13 +4,12 @@ namespace ShipovMihail_Roll_A_Boll
 {
     internal class ReduceSpeedController : ReduceSpeedBase
     {
-        public ReduceSpeedController(PlayerEffects playerEffects)
-        {
-            _playerEffects = playerEffects;
-        }
+        public delegate void ReduceSpeedBonus(float time);
+        public event ReduceSpeedBonus ReduceSpeed = delegate (float time) { };
 
         public override void AwakeTick()
         {
+            base.AwakeTick();
             _flyHight = Random.Range(1f, 2f);
             _rotationSpeed = Random.Range(5f, 180f);
             _material = GetComponent<Renderer>().material;
@@ -18,7 +17,7 @@ namespace ShipovMihail_Roll_A_Boll
 
         protected override void Interaction()
         {
-            _playerEffects.ReduceSpeed(_boostTime);
+            ReduceSpeed.Invoke(BoostTime);
         }
 
         public override void Fly()

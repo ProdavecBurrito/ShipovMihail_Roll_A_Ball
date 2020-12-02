@@ -2,6 +2,7 @@
 
 namespace ShipovMihail_Roll_A_Boll
 {
+    // Поидее, накдо бы камеру тоже разбить на классы
     internal sealed class CameraController : IUpdate
     {
         private Animator _animator;

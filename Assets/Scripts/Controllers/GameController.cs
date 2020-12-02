@@ -21,6 +21,16 @@ namespace ShipovMihail_Roll_A_Boll
                 }
             }
 
+            foreach(var item in _objectsInitializator.ReduceSpeed)
+            {
+                item.ReduceSpeed += _objectsInitializator.PlayerEffects.ReduceSpeed;
+            }
+
+            foreach (var item in _objectsInitializator.SpeedBonus)
+            {
+                item.BustSpeed += _objectsInitializator.PlayerEffects.BustSpeed;
+            }
+
             foreach (var item in _objectsInitializator.GoodBonuses)
             {
                 item.BonusChange += AddScore;
@@ -35,6 +45,8 @@ namespace ShipovMihail_Roll_A_Boll
 
             _objectsInitializator.Reference.RestartButton.onClick.AddListener(RestartGame);
             _objectsInitializator.Reference.RestartButton.gameObject.SetActive(false);
+
+            Debug.Log($"Kek3" + _objectsInitializator.GoodBonuses.Count);
         }
 
         private void Update()
@@ -56,7 +68,29 @@ namespace ShipovMihail_Roll_A_Boll
                         continue;
                     }
                 }
-                
+
+                if (_objectsInitializator.UpdatingObjects[i] is ReduceSpeedController reduceSpeed)
+                {
+                    if (!reduceSpeed.IsInteractable)
+                    {
+                        _objectsInitializator.UpdatingObjects.RemoveUpdatingObject(reduceSpeed);
+                        _objectsInitializator.TotalScoreObjects--;
+                        Destroy(reduceSpeed);
+                        continue;
+                    }
+                }
+
+                if (_objectsInitializator.UpdatingObjects[i] is SpeedBonusController speedBonus)
+                {
+                    if (!speedBonus.IsInteractable)
+                    {
+                        _objectsInitializator.UpdatingObjects.RemoveUpdatingObject(speedBonus);
+                        _objectsInitializator.TotalScoreObjects--;
+                        Destroy(speedBonus);
+                        continue;
+                    }
+                }
+
                 _objectsInitializator.UpdatingObjects[i].UpdateTick();
             }
 
@@ -96,6 +130,16 @@ namespace ShipovMihail_Roll_A_Boll
                 if (_objectsInitializator.UpdatingObjects[i] is GoodBonusController goodBonus)
                 {
                     goodBonus.BonusChange -= AddScore;
+                }
+
+                if (_objectsInitializator.UpdatingObjects[i] is SpeedBonusController speedBonus)
+                {
+                    speedBonus.BustSpeed -= _objectsInitializator.PlayerEffects.BustSpeed;
+                }
+
+                if (_objectsInitializator.UpdatingObjects[i] is ReduceSpeedController reduceSpeedController)
+                {
+                    reduceSpeedController.ReduceSpeed -= _objectsInitializator.PlayerEffects.ReduceSpeed;
                 }
             }
         }

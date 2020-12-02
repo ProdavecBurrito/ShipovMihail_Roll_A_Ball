@@ -6,18 +6,6 @@ namespace ShipovMihail_Roll_A_Boll
     {
         private List<IUpdate> _interactiveObjects;
 
-        public ListIUpdateObjects()
-        {
-            var interactiveObjects = UnityEngine.Object.FindObjectsOfType<InteractiveObject>();
-            for (int i = 0; i < interactiveObjects.Length; i++)
-            {
-                if (interactiveObjects[i] is IUpdate interactiveObject)
-                {
-                    AddUpdateObject(interactiveObject);
-                }
-            }
-        }
-
         public void RemoveUpdatingObject(IUpdate interactiveObject)
         {
             _interactiveObjects.Remove(interactiveObject);
@@ -34,7 +22,6 @@ namespace ShipovMihail_Roll_A_Boll
             if (_interactiveObjects == null)
             {
                 _interactiveObjects = new List<IUpdate>();
-                return;
             }
             _interactiveObjects.Add(interactiveObject);
         }
