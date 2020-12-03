@@ -5,7 +5,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>-17.533926</X>
-      <Y>0.08142853</Y>
+      <Y>0.10751915</Y>
       <Z>-21.5047</Z>
     </Position>
   </SavedData>
@@ -14,7 +14,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>-16.5139256</X>
-      <Y>1.10064888</Y>
+      <Y>0.531261444</Y>
       <Z>6.13530064</Z>
     </Position>
   </SavedData>
@@ -23,7 +23,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>7.7260747</X>
-      <Y>1.10064888</Y>
+      <Y>0.6655693</Y>
       <Z>8.185301</Z>
     </Position>
   </SavedData>
@@ -32,7 +32,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>17.4460754</X>
-      <Y>0.660568237</Y>
+      <Y>0.557518</Y>
       <Z>-19.6346989</Z>
     </Position>
   </SavedData>
@@ -41,7 +41,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>-17.08</X>
-      <Y>1.10064888</Y>
+      <Y>0.139757156</Y>
       <Z>-15.32</Z>
     </Position>
   </SavedData>
@@ -50,7 +50,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>2.98</X>
-      <Y>1.10064888</Y>
+      <Y>0.271450043</Y>
       <Z>-6.17</Z>
     </Position>
   </SavedData>
@@ -59,7 +59,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>11.92</X>
-      <Y>1.10064888</Y>
+      <Y>0.399799347</Y>
       <Z>-6.17</Z>
     </Position>
   </SavedData>
@@ -68,7 +68,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>3.4</X>
-      <Y>1.10064888</Y>
+      <Y>0.7770767</Y>
       <Z>13.4</Z>
     </Position>
   </SavedData>
@@ -77,7 +77,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>-16.5</X>
-      <Y>1.10064888</Y>
+      <Y>0.7345352</Y>
       <Z>-0.6000004</Z>
     </Position>
   </SavedData>
@@ -86,7 +86,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>-22.4</X>
-      <Y>1.10064888</Y>
+      <Y>0.275634766</Y>
       <Z>15.6</Z>
     </Position>
   </SavedData>
@@ -95,7 +95,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>17</X>
-      <Y>1.10064888</Y>
+      <Y>1.06232834</Y>
       <Z>20.1</Z>
     </Position>
   </SavedData>
@@ -104,7 +104,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>22.4</X>
-      <Y>1.10064888</Y>
+      <Y>0.3760357</Y>
       <Z>-20.9</Z>
     </Position>
   </SavedData>
@@ -113,7 +113,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>2.54607439</X>
-      <Y>1.10064888</Y>
+      <Y>1.60767174</Y>
       <Z>-15.7747</Z>
     </Position>
   </SavedData>
@@ -122,7 +122,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>2.73</X>
-      <Y>1.100649</Y>
+      <Y>0.05637932</Y>
       <Z>5.24</Z>
     </Position>
   </SavedData>
@@ -131,7 +131,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>17.31</X>
-      <Y>1.100649</Y>
+      <Y>0.139389038</Y>
       <Z>5.24</Z>
     </Position>
   </SavedData>
@@ -140,7 +140,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>-6.03</X>
-      <Y>1.100649</Y>
+      <Y>1.55547667</Y>
       <Z>-10.38</Z>
     </Position>
   </SavedData>
@@ -149,7 +149,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>-5.65</X>
-      <Y>1.100649</Y>
+      <Y>0.176802158</Y>
       <Z>0</Z>
     </Position>
   </SavedData>
@@ -158,7 +158,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>-22.36</X>
-      <Y>1.100649</Y>
+      <Y>1.43709278</Y>
       <Z>18.51</Z>
     </Position>
   </SavedData>
@@ -167,7 +167,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>6.66</X>
-      <Y>1.100649</Y>
+      <Y>0.121995449</Y>
       <Z>-16.68</Z>
     </Position>
   </SavedData>
@@ -176,7 +176,7 @@
     <IsEnable>true</IsEnable>
     <Position>
       <X>22.64</X>
-      <Y>1.100649</Y>
+      <Y>0.270327568</Y>
       <Z>-16.68</Z>
     </Position>
   </SavedData>
@@ -184,9 +184,9 @@
     <Name>Player(Clone)</Name>
     <IsEnable>true</IsEnable>
     <Position>
-      <X>-22.6275</X>
-      <Y>-0.4654665</Y>
-      <Z>-18.2190723</Z>
+      <X>-16.5412426</X>
+      <Y>-0.465466261</Y>
+      <Z>1.152287</Z>
     </Position>
   </SavedData>
-</ArrayOfSavedData>avedData>edData>
+</ArrayOfSavedData>

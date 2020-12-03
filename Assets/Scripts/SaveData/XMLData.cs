@@ -14,6 +14,8 @@ namespace ShipovMihail_Roll_A_Boll
 
         public void Save(string path = null, params T[] savingObjects)
         {
+            File.WriteAllText(path, null);
+
             //xmlSerializer = new XmlSerializer(savingObjects.GetType());
 
             //using (StringWriter textWriter = new StringWriter())
