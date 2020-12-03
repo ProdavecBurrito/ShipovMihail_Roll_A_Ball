@@ -4,14 +4,6 @@ namespace ShipovMihail_Roll_A_Boll
 {
     internal sealed class PlayerEffects : IUpdate
     {
-        public PlayerEffects()
-        {
-            if (this == null)
-            {
-
-            }
-        }
-
         private Timer _timer;
         public List<Timer> Timers = new List<Timer>();
         private PlayerBall _player;
