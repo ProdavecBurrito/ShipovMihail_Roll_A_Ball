@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public sealed class ListInteractableObject : IEnumerator, IEnumerable
+    internal sealed class ListInteractableObject : IEnumerator, IEnumerable
     {
         private InteractiveObject[] _interactiveObjects;
         private int _index = -1;

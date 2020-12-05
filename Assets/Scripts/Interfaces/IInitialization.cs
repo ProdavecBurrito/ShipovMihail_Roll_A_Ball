@@ -1,6 +1,6 @@
 ﻿namespace ShipovMihail_Roll_A_Boll
 {
-    public interface IInitialization
+    internal interface IInitialization
     {
         void Action();
     }

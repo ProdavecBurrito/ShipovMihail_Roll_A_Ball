@@ -1,6 +1,6 @@
 ﻿namespace ShipovMihail_Roll_A_Boll
 {
-    public interface IFlicker
+    internal interface IFlicker
     {
         void Flicker();
     }

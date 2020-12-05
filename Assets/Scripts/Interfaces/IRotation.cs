@@ -1,6 +1,6 @@
 ﻿namespace ShipovMihail_Roll_A_Boll
 {
-    public interface IRotation
+    internal interface IRotation
     {
         void Rotation();
     }

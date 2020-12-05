@@ -1,6 +1,6 @@
 ﻿namespace ShipovMihail_Roll_A_Boll
 {
-    public interface IUpdate
+    internal interface IUpdate
     {
         void UpdateTick();
     }

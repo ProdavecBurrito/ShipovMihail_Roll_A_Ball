@@ -1,8 +1,15 @@
-﻿namespace ShipovMihail_Roll_A_Boll
+﻿using System;
+
+namespace ShipovMihail_Roll_A_Boll
 {
-    public class SavedData<T>
+    [Serializable]
+    internal class SavedData
     {
-        public int BonusCounter;
-        public T IdPlayer = default;
+        public string Name;
+        public bool IsEnable;
+        public SerializableVector3 Position;
+
+        public override string ToString() => $"Name {Name} Position {Position} IsVisible {IsEnable}";
+
     }
 }
