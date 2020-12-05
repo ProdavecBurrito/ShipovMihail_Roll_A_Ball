@@ -2,7 +2,7 @@
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public class NewTest : MonoBehaviour
+    internal class NewTest : MonoBehaviour
     {
         public int Count = 10;
         public int Offset = 1;

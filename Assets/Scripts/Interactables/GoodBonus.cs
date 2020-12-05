@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public sealed class GoodBonus : InteractiveObject, IFly, IFlicker, IUpdate, IDisposable
+    internal sealed class GoodBonus : InteractiveObject, IFly, IFlicker, IUpdate, IDisposable
     {
         [Range(1, 10)]
         public float Point;

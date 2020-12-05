@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public class ObjectsInitializator
+    internal class ObjectsInitializator
     {
         private PlayerEffects _playerEffects;
         private PlayerBall _playerBall;

@@ -4,7 +4,7 @@ using UnityEditor;
 namespace ShipovMihail_Roll_A_Boll
 {
     [CustomEditor(typeof(NewTest))]
-    public class NewTestEditor : UnityEditor.Editor
+    internal class NewTestEditor : UnityEditor.Editor
     {
         private bool _isPressButtonOk;
 

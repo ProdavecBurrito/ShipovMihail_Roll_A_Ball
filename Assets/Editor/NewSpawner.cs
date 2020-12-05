@@ -1,18 +1,20 @@
 ﻿using UnityEditor;
 using UnityEngine;
-using System.Collections.Generic;
 
-public class NewSpawner : EditorWindow
+namespace ShipovMihail_Roll_A_Boll
 {
-    public int CriatingObjectsCounter;
-    public bool IsAdditionalFeaturesActive;
-
-    private void OnGUI()
+    internal class NewSpawner : EditorWindow
     {
-        GUILayout.Label("Настройки", EditorStyles.label);
-        IsAdditionalFeaturesActive = EditorGUILayout.BeginToggleGroup("Включить", IsAdditionalFeaturesActive);
-        CriatingObjectsCounter = EditorGUILayout.IntSlider("Количество обьектов", CriatingObjectsCounter, 1, 10);
+        public int CriatingObjectsCounter;
+        public bool IsAdditionalFeaturesActive;
 
-        EditorGUILayout.EndToggleGroup();
+        private void OnGUI()
+        {
+            GUILayout.Label("Настройки", EditorStyles.label);
+            IsAdditionalFeaturesActive = EditorGUILayout.BeginToggleGroup("Включить", IsAdditionalFeaturesActive);
+            CriatingObjectsCounter = EditorGUILayout.IntSlider("Количество обьектов", CriatingObjectsCounter, 1, 10);
+
+            EditorGUILayout.EndToggleGroup();
+        }
     }
 }

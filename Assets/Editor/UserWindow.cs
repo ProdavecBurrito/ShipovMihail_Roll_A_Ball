@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public class UserWindow : EditorWindow
+    internal class UserWindow : EditorWindow
     {
         public static GameObject InstantiatingObject;
 

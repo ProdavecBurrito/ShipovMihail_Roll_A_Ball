@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public sealed class VayPoint : MonoBehaviour
+    internal sealed class VayPoint : MonoBehaviour
     {
         [SerializeField] private GameObject _prefab;
         private LineDrawer _rootWayPoint;

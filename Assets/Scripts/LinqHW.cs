@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    class LinqHW
+    internal class LinqHW
     {
         public void Counter<T>(List<T> nums)
         {

@@ -2,7 +2,7 @@
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public class CameraAnimatorInitializator
+    internal class CameraAnimatorInitializator
     {
         private Animator _cameraAnimator;
 

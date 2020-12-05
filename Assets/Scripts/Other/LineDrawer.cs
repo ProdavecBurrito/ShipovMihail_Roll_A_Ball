@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public class LineDrawer : MonoBehaviour
+    internal class LineDrawer : MonoBehaviour
     {
         [SerializeField]
         private Color _lineColor = Color.red;

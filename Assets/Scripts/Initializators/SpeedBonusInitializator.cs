@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public class SpeedBonusInitializator
+    internal class SpeedBonusInitializator
     {
         private List<SpeedBonusController> _speedBonus;
 

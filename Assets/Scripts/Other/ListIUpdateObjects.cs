@@ -2,7 +2,7 @@
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    class ListIUpdateObjects
+    internal class ListIUpdateObjects
     {
         private List<IUpdate> _interactiveObjects;
 

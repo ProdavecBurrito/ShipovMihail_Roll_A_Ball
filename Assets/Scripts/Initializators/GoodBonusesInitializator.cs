@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public class GoodBonusesInitializator
+    internal class GoodBonusesInitializator
     {
         private List<GoodBonusController> _goodBonuses;
 

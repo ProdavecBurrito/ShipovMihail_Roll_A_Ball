@@ -2,7 +2,7 @@
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    class BadBonusController : BadBonusBase
+    internal class BadBonusController : BadBonusBase
     {
 
         public delegate void CaughtPlayerChange(string objectName, Color color);

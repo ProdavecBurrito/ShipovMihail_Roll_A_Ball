@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    class DisplayEndGame
+    internal class DisplayEndGame
     {
         private Text _endGameText;
 

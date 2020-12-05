@@ -3,7 +3,7 @@
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public abstract class InteractiveObject : MonoBehaviour, IInteracteble, IUpdate, ISaving, IAwake
+    internal abstract class InteractiveObject : MonoBehaviour, IInteracteble, IUpdate, ISaving, IAwake
     {
         [SerializeField] private bool _isAllowScaling;
         [SerializeField] private float _activeDis;
@@ -39,7 +39,6 @@ namespace ShipovMihail_Roll_A_Boll
             }
             IsInteractable = false;
             Interaction();
-            //Destroy(gameObject);
         }
 
         protected abstract void Interaction();

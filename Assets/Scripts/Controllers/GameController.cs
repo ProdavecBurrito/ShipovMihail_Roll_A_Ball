@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public class GameController : MonoBehaviour, IDisposable
+    internal class GameController : MonoBehaviour, IDisposable
     {
         private ObjectsInitializator _objectsInitializator;
         private float _currentScore;

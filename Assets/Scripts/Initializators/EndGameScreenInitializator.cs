@@ -2,7 +2,7 @@
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public class EndGameScreenInitializator
+    internal class EndGameScreenInitializator
     {
         private GameObject _endGameScreen;
 

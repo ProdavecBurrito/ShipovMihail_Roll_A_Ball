@@ -2,7 +2,7 @@
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public class StreamData /*: ISaveData<SavedData>*/
+    internal class StreamData /*: ISaveData<SavedData>*/
     {
         //public void Save(string path = null, params SavedData[] data)
         //{

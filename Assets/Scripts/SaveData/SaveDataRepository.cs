@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public sealed class SaveDataRepository
+    internal sealed class SaveDataRepository
     {
         private readonly ISaveData<SavedData> _data;
 

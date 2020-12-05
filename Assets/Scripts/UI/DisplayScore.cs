@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public class DisplayScore
+    internal class DisplayScore
     {
         private Image _image;
 

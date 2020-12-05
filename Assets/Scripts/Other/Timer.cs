@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public class Timer
+    internal class Timer
     {
         public float CurrentTime { get; private set; }
         public float EndTime { get; set; }

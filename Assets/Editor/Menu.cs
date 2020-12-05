@@ -2,7 +2,7 @@
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public class NewBehaviourScript
+    internal class NewBehaviourScript
     {
         [MenuItem("UserPrefs/TestSpawnWindow %#b")]
         private static void MenuOption()

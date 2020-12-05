@@ -3,7 +3,7 @@
 namespace ShipovMihail_Roll_A_Boll
 {
     [Serializable]
-    public class SavedData
+    internal class SavedData
     {
         public string Name;
         public bool IsEnable;

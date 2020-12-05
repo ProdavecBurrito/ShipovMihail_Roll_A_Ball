@@ -4,7 +4,7 @@ using System;
 namespace ShipovMihail_Roll_A_Boll
 {
     [Serializable]
-    public struct SerializableVector3
+    internal struct SerializableVector3
     {
         public float X;
         public float Y;

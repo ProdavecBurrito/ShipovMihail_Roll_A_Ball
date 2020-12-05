@@ -2,7 +2,7 @@
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public class PlayerBallInitializator
+    internal class PlayerBallInitializator
     {
         private PlayerBall _playerBall;
 

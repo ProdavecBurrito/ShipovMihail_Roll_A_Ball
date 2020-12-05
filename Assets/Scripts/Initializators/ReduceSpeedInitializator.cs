@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public class ReduceSpeedInitializator
+    internal class ReduceSpeedInitializator
     {
         private List<ReduceSpeedController> _reduceSpeed;
 

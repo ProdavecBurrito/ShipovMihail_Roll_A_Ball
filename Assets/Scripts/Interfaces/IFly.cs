@@ -1,6 +1,6 @@
 ﻿namespace ShipovMihail_Roll_A_Boll
 {
-    public interface IFly
+    internal interface IFly
     {
         void Fly();
     }

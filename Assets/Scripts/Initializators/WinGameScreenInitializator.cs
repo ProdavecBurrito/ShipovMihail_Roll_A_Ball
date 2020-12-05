@@ -2,7 +2,7 @@
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public class WinGameScreenInitializator
+    internal class WinGameScreenInitializator
     {
         private GameObject _winGame;
 

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public class References
+    internal class References
     {
         private PlayerEffects _playerEffects;
         private PlayerBall _playerBall;

@@ -2,9 +2,8 @@
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public abstract class PlayerBase : MonoBehaviour, ISaving
+    internal abstract class PlayerBase : MonoBehaviour, ISaving
     {
-
         public float NormalSpeed = 5.0f;
         public float CurrentSpeed = 0;
         public float JumpForce = 5.0f;

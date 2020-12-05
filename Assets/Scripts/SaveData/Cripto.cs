@@ -2,7 +2,7 @@
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public static class Cripto
+    internal static class Cripto
     {
         public static string CryptoXOR(string text, int key = 42)
         {

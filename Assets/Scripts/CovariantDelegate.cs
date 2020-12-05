@@ -1,8 +1,6 @@
-﻿using UnityEngine;
-
-namespace ShipovMihail_Roll_A_Boll
+﻿namespace ShipovMihail_Roll_A_Boll
 {
-    public class CovariantDelegate
+    internal class CovariantDelegate
     {
         public delegate T CovarDelegate<out T>();
 

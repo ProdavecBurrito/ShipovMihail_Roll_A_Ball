@@ -2,7 +2,7 @@
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public sealed class GoodBonusesEqualityComparer : IEqualityComparer<GoodBonus>
+    internal sealed class GoodBonusesEqualityComparer : IEqualityComparer<GoodBonus>
     {
         public bool Equals(GoodBonus a, GoodBonus y) => a.Point == y.Point;
 

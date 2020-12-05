@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public class RestartButtonInitiaizator
+    internal class RestartButtonInitiaizator
     {
         private Button _restartButton;
 

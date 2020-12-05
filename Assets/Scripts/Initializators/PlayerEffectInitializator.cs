@@ -1,6 +1,6 @@
 ﻿namespace ShipovMihail_Roll_A_Boll
 {
-    public class PlayerEffectInitializator
+    internal class PlayerEffectInitializator
     {
         private PlayerEffects _playerEffects;
 

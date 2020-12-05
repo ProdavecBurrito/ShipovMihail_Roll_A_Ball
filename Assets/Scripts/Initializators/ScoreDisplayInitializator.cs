@@ -2,7 +2,7 @@
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public class ScoreDisplayInitializator
+    internal class ScoreDisplayInitializator
     {
         private GameObject _scoreDisplay;
 

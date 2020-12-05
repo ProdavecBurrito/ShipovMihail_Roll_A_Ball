@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ShipovMihail_Roll_A_Boll
 {
-    public abstract class GoodBonusBase : InteractiveObject, IFly, IFlicker, IDisposable
+    internal abstract class GoodBonusBase : InteractiveObject, IFly, IFlicker, IDisposable
     {
 
         public float Point = 1;
